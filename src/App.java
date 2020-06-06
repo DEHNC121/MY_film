@@ -1,12 +1,18 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class App {
     private final String url = "jdbc:postgresql://dehncserver.postgres.database.azure.com/postgres";
     private final String user = "dehnc@dehncserver";
     private final String password = "kodkodkod1#";
+
+    public Connection connection;
+    public Statement statement;
+
+     public App()
+     {
+         connection=connect();
+         statement=stat(connection);
+     }
 
     public Connection connect() {
         Connection conn = null;
@@ -35,14 +41,59 @@ public class App {
         return statement;
     }
 
+
+    public void Update(String s) {
+        try {
+
+            statement.executeUpdate(s);
+            System.out.println("Update successfully.");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public ResultSet Select(String s) {
+        ResultSet set=null;
+        try {
+
+            set=statement.executeQuery(s);
+            System.out.println("Select successfully.");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return set;
+    }
+    public void Print(ResultSet set) {
+        try {
+
+
+            System.out.print("----");
+            while (set.next())
+            {
+
+                System.out.print(set);
+            }
+            System.out.print("\n----");
+            System.out.print("\nDone");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
     public static void main(String[] args) {
         App app = new App();
-        Connection connection=app.connect();
-        String sql = "CREATE TABLE REGISTRATION " +
-                "(id INTEGER not NULL, " +
-                " first VARCHAR(255), " +
-                " last VARCHAR(255), " +
-                " age INTEGER, " +
-                " PRIMARY KEY ( id ))";
+
+
+
+        String sql = "Select * from x;";
+
+        app.Print(app.Select(sql));
+
+
     }
 }
