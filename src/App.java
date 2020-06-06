@@ -67,19 +67,30 @@ public class App {
 
         return set;
     }
-    public void Print(ResultSet set) {
+    public void Print(ResultSet rs) {
         try {
 
-
-            System.out.print("----");
-            while (set.next())
+            if (rs==null)
             {
-
-                System.out.print(set);
+                return;
             }
-            System.out.print("\n----");
-            System.out.print("\nDone");
+            System.out.println("--\n");
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
 
+
+            while (rs.next()) {
+                for(int i = 1 ; i <= columnsNumber; i++){
+
+                    System.out.print(rs.getString(i) + " | ");
+
+                }
+
+                System.out.println();
+
+            }
+
+            System.out.println("--\n");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -90,7 +101,7 @@ public class App {
 
 
 
-        String sql = "Select * from x;";
+        String sql = "Select * from Film;";
 
         app.Print(app.Select(sql));
 
