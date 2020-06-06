@@ -4,9 +4,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class App {
-    private final String url = "jdbc:postgresql://localhost:5432/postgres";
-    private final String user = "postgres";
-    private final String password = "kodkod";
+    private final String url = "jdbc:postgresql://dehncserver.postgres.database.azure.com/postgres";
+    private final String user = "dehnc@dehncserver";
+    private final String password = "kodkodkod1#";
 
     public Connection connect() {
         Connection conn = null;
@@ -38,7 +38,6 @@ public class App {
     public static void main(String[] args) {
         App app = new App();
         Connection connection=app.connect();
-
         String sql = "CREATE TABLE REGISTRATION " +
                 "(id INTEGER not NULL, " +
                 " first VARCHAR(255), " +
