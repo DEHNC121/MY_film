@@ -9,6 +9,7 @@ public class AddPanel extends JPanel {
     private Font font = new Font("SanSerif",Font.BOLD,20);
 
     public AddPanel(String title){
+        title=title.toLowerCase();
         setLayout(null);
 
         input=new ArrayList();

@@ -12,19 +12,19 @@ public class Panel extends JPanel {
         j=0;
 
 
-        button[addButoon("New Film")].addActionListener(new ButtonFilm());
-        button[addButoon("New Series")].addActionListener(new ButtonAdd());
+        button[addButoon("New Film")].addActionListener(new ButtonAdd("Film"));
+        button[addButoon("New Series")].addActionListener(new ButtonAdd("Series"));
 
-        addButoon("Add Season");
-        addButoon("Add Series");
-        addButoon("Add Genre");
-        addButoon("Add Studio");
+        button[addButoon("Add Season")].addActionListener(new ButtonAdd("Season"));
+        button[addButoon("Add Episode")].addActionListener(new ButtonAdd("Episode"));
+        button[addButoon("Add Genre")].addActionListener(new ButtonAdd("Genre"));
+        button[addButoon("Add Studio")].addActionListener(new ButtonAdd("Studio"));
 
-        addButoon("Add Country");
-        addButoon("Add Language");
-        addButoon("Add Team");
-        addButoon("Add User");
-        addButoon("Add Studio");
+        button[addButoon("Add Country")].addActionListener(new ButtonAdd("Country"));
+        button[addButoon("Add Language")].addActionListener(new ButtonAdd("Language"));
+        button[addButoon("Add Team")].addActionListener(new ButtonAdd("Team"));
+        button[addButoon("Add User")].addActionListener(new ButtonAdd("db_user"));
+        button[addButoon("Add Studio")].addActionListener(new ButtonAdd("Studio"));
 
         addButoon("Add Team");
 
@@ -38,23 +38,18 @@ public class Panel extends JPanel {
         return j++;
     }
 
-    class ButtonFilm implements ActionListener
-    {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            new Window(330,500, new NewFilmPanel("film"),"AddFilm");
-            //JOptionPane.showMessageDialog(null,"test","out",JOptionPane.PLAIN_MESSAGE);
-        }
-    }
     class ButtonAdd implements ActionListener
     {
 
+        private String title;
+        ButtonAdd(String s)
+        {
+            title=s;
+        }
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            new Window(330,500, new AddPanel("series"),"AddFilm");
+            new Window(330,500, new AddPanel(title),"AddFilm");
             //JOptionPane.showMessageDialog(null,"test","out",JOptionPane.PLAIN_MESSAGE);
         }
     }
