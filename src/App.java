@@ -41,7 +41,7 @@ public class App {
         colTypes.put("type","type,name");
         colTypes.put("episode","name,description, length,number,season_id,colour");
         colTypes.put("series","name,description,year,release_date,seasons");
-        colTypes.put("season","name,description,year,release_date,seasons");
+        colTypes.put("season","series_id,name,description,year,release_date,seasons");
         colTypes.put("member","name,sex");
         colTypes.put("team","film_id,type,member_id,position");
         colTypes.put("character","film_id,type,member_id,name");
@@ -109,7 +109,7 @@ public class App {
             int k=0;
             k=types.get(s).length();
             s=s.toLowerCase();
-            String insert="INSERT INTO ("+s;
+            String insert="INSERT INTO "+s+"(";
             insert+=colTypes.get(s);
             insert+=") VALUES (";
             String t=types.get(s);
