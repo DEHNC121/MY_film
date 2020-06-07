@@ -7,6 +7,7 @@ public class App {
     private final String user = "dehnc@dehncserver";
     private final String password = "kodkodkod1#";
     private Map<String, String> types;
+    private Map<String, String> colTypes;
     public Connection connection;
     public Statement statement;
     public App()
@@ -35,6 +36,27 @@ public class App {
         types.put("country","s");
         types.put("film_country","iii");
 
+        colTypes=new HashMap<>();
+        colTypes.put("film","name,description,year,release_date,length,colour");
+        colTypes.put("type","type,name");
+        colTypes.put("episode","name,description, length,number,season_id,colour");
+        colTypes.put("series","name,description,year,release_date,seasons");
+        colTypes.put("season","name,description,year,release_date,seasons");
+        colTypes.put("member","name,sex");
+        colTypes.put("team","film_id,type,member_id,position");
+        colTypes.put("character","film_id,type,member_id,name");
+        colTypes.put("genre","name,description");
+        colTypes.put("film_genre","film_id,type,genre_id");
+        colTypes.put("db_user","name,mail,login,password");
+        colTypes.put("list","user_id,title");
+        colTypes.put("list_content","list_id,film_id,type");
+        colTypes.put("mark","film_id, type, value, user_id, description");
+        colTypes.put("language","language");
+        colTypes.put("film_language","film_id,type,is_silent,language_id,form");
+        colTypes.put("studio","name,establishment_year,is_active");
+        colTypes.put("film_studio","film_id,type,studio_id");
+        colTypes.put("country","country");
+        colTypes.put("film_country","film_id,type,country_id");
 
         new Window(570,380,this);
     }
@@ -81,30 +103,11 @@ public class App {
     public void Update(String s, String[] args) {
         try {
             int k=0;
-            s=s.toLowerCase();
-            String insert="INSERT INTO "+s;
             k=types.get(s).length();
-            if(s.equals("film"))insert+="(name,description,year,release_date,length,colour)";
-            else if(s.equals("type"))insert+="(type,name)";
-            else if(s.equals("episode"))insert+="(name,description, length,number,season_id,colour)";
-            if(s.equals("series"))insert+="(name,description,year,release_date,seasons)";
-            if(s.equals("season"))insert+="(series_id,name,description, year,release_date, episodes)";
-            if(s.equals("member"))insert+="(name, sex)";
-            if(s.equals("team"))insert+="";
-            if(s.equals("character"))insert+="";
-            if(s.equals("genre"))insert+="(name,description)";
-            if(s.equals("film_genre"))insert+="(film_id,type,genre_id)";
-            if(s.equals("db_user"))insert+="(name, mail, login, password)";
-            if(s.equals("list"))insert+="(user_id,title)";
-            if(s.equals("list_content"))insert+="(list_id,film_id,type)";
-            if(s.equals("mark"))insert+="(film_id, type, value, user_id, description)";
-            if(s.equals("language"))insert+="(language)";
-            if(s.equals("film_language"))insert+="(film_id,type,is_silent,language_id,form";
-            if(s.equals("studio"))insert+="(name,establishment_year,is_active)";
-            if(s.equals("film_studio"))insert+="(film_id,type,studio_id)";
-            if(s.equals("country"))insert+="(country)";
-            if(s.equals("film_country"))insert+="(film_id,type,country_id)";
-            insert+=" VALUES (";
+            s=s.toLowerCase();
+            String insert="INSERT INTO ("+s;
+            insert+=colTypes.get(s);
+            insert+=") VALUES (";
             String t=types.get(s);
             for(int i=0; i<k-1; i++){
                 if(t.charAt(i)=='s') insert+="'"+args[i]+"', ";
