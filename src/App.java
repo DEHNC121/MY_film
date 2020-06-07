@@ -11,7 +11,6 @@ public class App {
     public Statement statement;
     public App()
     {
-        new Window(570,380,this);
         connection=connect();
         statement=stat(connection);
         types=new HashMap<>();
@@ -35,6 +34,9 @@ public class App {
         types.put("film_studio","iii");
         types.put("country","s");
         types.put("film_country","iii");
+
+
+        new Window(570,380,this);
     }
     public Connection connect() {
         Connection conn = null;
@@ -59,6 +61,21 @@ public class App {
 
     public Map<String, String> getTypes() {
         return types;
+    }
+
+    public ResultSet Find(String type, String name){
+        ResultSet set=null;
+        try{
+            type=type.toLowerCase();
+            if(type.equals("film")) set=statement.executeQuery("SELECT * FROM find_film('"+name+"')");
+            if(type.equals("episode")) set=statement.executeQuery("SELECT * FROM find_episode('"+name+"')");
+            if(type.equals("season")) set=statement.executeQuery("SELECT * FROM find_season('"+name+"')");
+            if(type.equals("series")) set=statement.executeQuery("SELECT * FROM find_series('"+name+"')");
+            else set=statement.executeQuery("SELECT 7");
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return set;
     }
 
     public void Update(String s, String[] args) {
@@ -103,6 +120,7 @@ public class App {
             System.out.println("POSTGRESQL:"+e.getMessage());
         }
     }
+
     public ResultSet Select(String s) {
         ResultSet set=null;
         try {

@@ -6,6 +6,7 @@ public class Window
 {
     private static JFrame window;
     private static App app;
+
     public Window (int width,int height,App a) {
         if(a!=null)
         {
@@ -20,13 +21,13 @@ public class Window
         window.setVisible(true );
     }
 
-    public Window (int width,int height) {
-        window=new JFrame("MY_film");
+    public Window (int width,int height,JPanel jp,String name) {
+        window=new JFrame(name);
         window.setSize(width,height);
-        window.add(new Panel());
+        window.add(jp);
         window.setLocationRelativeTo(null);
         window.setResizable(false);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         window.setVisible(true );
     }
 
@@ -34,8 +35,4 @@ public class Window
         return app;
     }
 
-    public static void AddW(JPanel p)
-    {
-        window.add(new Panel());
-    }
 }

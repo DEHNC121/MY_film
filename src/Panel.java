@@ -43,7 +43,7 @@ public class Panel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            Window.AddW(new NewFilmPanel());
+            new Window(300,500, new NewFilmPanel(),"AddFilm");
             //JOptionPane.showMessageDialog(null,"test","out",JOptionPane.PLAIN_MESSAGE);
         }
     }
