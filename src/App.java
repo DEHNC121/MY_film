@@ -85,6 +85,10 @@ public class App {
         return types;
     }
 
+    public Map<String, String> getColTypes() {
+        return colTypes;
+    }
+
     public ResultSet Find(String type, String name){
         ResultSet set=null;
         try{

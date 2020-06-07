@@ -1,15 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class NewFilmPanel extends JPanel {
+public class AddPanel extends JPanel {
 
-    private ArrayList<JTextField>  input;
+    private ArrayList<JTextField> input;
     private ArrayList<JLabel>  label;
     private Font font = new Font("SanSerif",Font.BOLD,20);
 
-    public NewFilmPanel(String title){
+    public AddPanel(String title){
         setLayout(null);
 
         input=new ArrayList();
@@ -21,9 +20,9 @@ public class NewFilmPanel extends JPanel {
 
         label=new ArrayList();
 
-        String s=Window.getApp().getTypes().get("film");
+        String s=Window.getApp().getTypes().get(title);
 
-        String[] n=Window.getApp().getColTypes().get("film").split(",");
+        String[] n=Window.getApp().getColTypes().get(title).split(",");
 
         for (int i=0;i<s.length();i++)
         {
@@ -36,7 +35,6 @@ public class NewFilmPanel extends JPanel {
             label.get(i).setFont(Window.Sfont);
             add(label.get(i));
         }
-
         JButton button =new JButton("Submit");
         button.setBounds(100,s.length()*35+15+40,120,50);
         add(button);

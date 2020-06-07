@@ -6,8 +6,13 @@ public class Window
 {
     private static JFrame window;
     private static App app;
+    public static Font Sfont;
 
     public Window (int width,int height,App a) {
+        if(Sfont==null)
+        {
+            Sfont = new Font("SanSerif",Font.BOLD,14);
+        }
         if(a!=null)
         {
             app=a;
