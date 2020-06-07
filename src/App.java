@@ -10,6 +10,7 @@ public class App {
 
      public App()
      {
+         new Window();
          connection=connect();
          statement=stat(connection);
      }
@@ -97,6 +98,7 @@ public class App {
 
     }
     public static void main(String[] args) {
+
         App app = new App();
 
 
