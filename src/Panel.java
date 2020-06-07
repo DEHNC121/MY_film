@@ -8,7 +8,7 @@ public class Panel extends JPanel {
     int j;
     public Panel(){
         setLayout(null);
-        button =new JButton[15];
+        button =new JButton[16];
         j=0;
 
 
@@ -25,7 +25,7 @@ public class Panel extends JPanel {
         button[addButoon("Add Team")].addActionListener(new ButtonAdd("Team"));
         button[addButoon("Add User")].addActionListener(new ButtonAdd("db_user"));
         button[addButoon("Add Studio")].addActionListener(new ButtonAdd("Studio"));
-
+        button[addButoon("List of films")].addActionListener(new ButtonFilm("List of Films"));
         addButoon("Add Team");
 
     }
@@ -38,12 +38,22 @@ public class Panel extends JPanel {
         return j++;
     }
 
-    class ButtonAdd implements ActionListener
-    {
-
+    class ButtonFilm implements ActionListener{
         private String title;
-        ButtonAdd(String s)
-        {
+        ButtonFilm(String s) {
+            title=s;
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            new Window(1000,1000, new FilmListPanel(title),"List of films");
+            //JOptionPane.showMessageDialog(null,"test","out",JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+
+    class ButtonAdd implements ActionListener {
+        private String title;
+        ButtonAdd(String s) {
             title=s;
         }
         @Override

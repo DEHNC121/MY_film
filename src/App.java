@@ -138,26 +138,24 @@ public class App {
         }
         return set;
     }
-    public void Print(ResultSet rs) {
+    public ArrayList<String> Print(ResultSet rs) {
+        ArrayList<String> s=new ArrayList<>();
         try {
-            if (rs==null)
-            {
-                return;
-            }
-            System.out.println("--\n");
+            if (rs==null)return s;
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
 
             while (rs.next()) {
+                String row="";
                 for(int i = 1 ; i <= columnsNumber; i++){
-                    System.out.print(rs.getString(i) + " | ");
+                    row+=rs.getString(i) + " | ";
                 }
-                System.out.println();
+                s.add(row);
             }
-            System.out.println("--\n");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return s;
     }
     public static void main(String[] args) {
         App app = new App();
