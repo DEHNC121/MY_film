@@ -15,11 +15,11 @@ public class App {
         connection=connect();
         statement=stat(connection);
         types=new HashMap<>();
-        types.put("film","ssisis");
+        types.put("film","ssidis");
         types.put("type","is");
         types.put("episode","ssiiis");
-        types.put("series","ssisi");
-        types.put("season","issisi");
+        types.put("series","ssidi");
+        types.put("season","issidi");
         types.put("member","ss");
         types.put("team","iiis");
         types.put("character","iiis");
@@ -114,10 +114,10 @@ public class App {
             insert+=") VALUES (";
             String t=types.get(s);
             for(int i=0; i<k-1; i++){
-                if(t.charAt(i)=='s') insert+="'"+args[i]+"', ";
+                if(t.charAt(i)=='s' || t.charAt(i)=='d') insert+="'"+args[i]+"', ";
                 else insert+=args[i]+", ";
             }
-            if(t.charAt(k-1)=='s') insert+="'"+args[k-1]+"'";
+            if(t.charAt(k-1)=='s' || t.charAt(k-1)=='d') insert+="'"+args[k-1]+"'";
             else insert+=args[k-1];
             insert+=");";
             System.out.println(insert);
