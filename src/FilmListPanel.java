@@ -10,10 +10,12 @@ public class FilmListPanel extends JPanel {
     private Font font = new Font("SanSerif",Font.BOLD,20);
     private String title;
     public FilmListPanel(String t) {
+/*
         title = t.toLowerCase();
         setLayout(null);
 
         check = new ArrayList();
+
 
         JLabel Title = new JLabel(title);
         Title.setBounds(110, 10, 5000, 25);
@@ -29,5 +31,22 @@ public class FilmListPanel extends JPanel {
             check.get(i).setBounds(10, 10 + 35 * i + 40, 3000, 25);
             add(check.get(i));
         }
+*/
+        JFrame frame = new JFrame();
+        JPanel panel = new JPanel();
+        for (int i = 0; i < 10; i++) {
+            panel.add(new JButton("Hello-" + i));
+        }
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setBounds(50, 30, 300, 50);
+        JPanel contentPane = new JPanel(null);
+        contentPane.setPreferredSize(new Dimension(500, 400));
+        contentPane.add(scrollPane);
+        frame.setContentPane(contentPane);
+        frame.pack();
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
