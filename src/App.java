@@ -1,3 +1,5 @@
+import javafx.util.Pair;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,7 +106,7 @@ public class App {
         return set;
     }
 
-    public String Update(String s, String[] args) {
+    public Pair<String,Integer> Update(String s, String[] args) {
         String end=null;
         try {
             int k=0;
@@ -123,9 +125,9 @@ public class App {
             insert+=");";
             end=insert;
             statement.executeUpdate(insert);
-            return end+"\nUpdate successfully.";
+            return new Pair<>(end+"\nUpdate successfully.",1);
         } catch (SQLException e) {
-            return end+"\nPOSTGRESQL:"+e.getMessage();
+            return new Pair<>(end+"\nPOSTGRESQL:"+e.getMessage(),0);
         }
     }
 
