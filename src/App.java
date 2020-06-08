@@ -104,7 +104,8 @@ public class App {
         return set;
     }
 
-    public void Update(String s, String[] args) {
+    public String Update(String s, String[] args) {
+        String end=null;
         try {
             int k=0;
             k=types.get(s).length();
@@ -120,11 +121,11 @@ public class App {
             if(t.charAt(k-1)=='s' || t.charAt(k-1)=='d') insert+="'"+args[k-1]+"'";
             else insert+=args[k-1];
             insert+=");";
-            System.out.println(insert);
+            end=insert;
             statement.executeUpdate(insert);
-            System.out.println("Update successfully.");
+            return end+"\nUpdate successfully.";
         } catch (SQLException e) {
-            System.out.println("POSTGRESQL:"+e.getMessage());
+            return end+"\nPOSTGRESQL:"+e.getMessage();
         }
     }
 

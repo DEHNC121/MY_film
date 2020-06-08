@@ -210,7 +210,7 @@ public class AddPanel extends JPanel {
                             date[i]=buttonInput;
                     }
                 }
-                Window.getApp().Update(this.title, date);
+                JOptionPane.showMessageDialog(null,Window.getApp().Update(this.title, date),"Update",JOptionPane.PLAIN_MESSAGE);
             }
         };
         button.addActionListener(le);
