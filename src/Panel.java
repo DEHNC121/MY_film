@@ -8,7 +8,7 @@ public class Panel extends JPanel {
     int j;
     public Panel(){
         setLayout(null);
-        button =new JButton[25];
+        button =new JButton[30];
         j=0;
 
 
@@ -35,9 +35,20 @@ public class Panel extends JPanel {
         addButoon("Add","List_content","Db_user");
 
         addButoonList("film","List of films");
+        addFuncButton("find film","find_film",'s');
 
     }
-
+    public int addFuncButton(String t, String f, char type){
+        button[j]=new JButton(t);
+        button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
+        ActionListener le = (ActionEvent e) ->
+        {
+            new Window(350, 500, new FuncPanel(t,f,type), t);
+        };
+        button[j].addActionListener(le);
+        add(button[j]);
+        return j++;
+    }
     public int addButoon(String s1,String s2) {
         button[j] = new JButton(s1 + " " + s2);
         button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
