@@ -213,9 +213,9 @@ public class AddPanel extends JPanel {
                             date[i]=buttonInput;
                     }
                 }
-                Pair<String,Integer> p =Window.getApp().Update(this.title, date);
-                String test=p.getKey();
-                if (p.getValue()==1)
+                String test=Window.getApp().Update(this.title, date);
+                String ok=test.substring(test.length()-3);
+                if (ok.equals("!!!"))
                 {
                     JOptionPane.showMessageDialog(null,test,"Update",JOptionPane.PLAIN_MESSAGE);
                     Window.Off();
