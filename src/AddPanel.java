@@ -83,6 +83,8 @@ public class AddPanel extends JPanel {
                     add(radioButtons.get(j));
                 }
                 else if (n[i].replaceAll("\\s+","").equals("value")){
+                    JPanel panel = new JPanel ();
+                    panel.setLayout (null);
                     System.out.println(n[i]);
                     radioButtons.add(new JRadioButton("0"));
                     radioButtons.add(new JRadioButton("0.5"));
@@ -100,8 +102,12 @@ public class AddPanel extends JPanel {
                         System.out.println(k);
                         bg.add(radioButtons.get(k));
                         radioButtons.get(k).setBounds(110+k*60,10+35*i+40,60,25);
-                        add(radioButtons.get(k));
+                        panel.add(radioButtons.get(k));
                     }
+                    panel.setPreferredSize(new Dimension(400,300));
+                    JScrollPane scrollPane = new JScrollPane (panel);
+                    scrollPane.setBounds(140, 120, 180, 30);
+                    add (scrollPane);
                 }
             }
             else
