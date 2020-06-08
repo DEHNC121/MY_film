@@ -63,7 +63,11 @@ public class AddPanel extends JPanel {
 
                 add(lej);
 
-            }else
+            } else if (n[i].equals("colour"))
+            {
+
+            }
+            else
                 {
                     input.get(i).setBounds(110,10+35*i+40,180,25);
                     add(input.get(i));
@@ -116,6 +120,8 @@ public class AddPanel extends JPanel {
                         if (test<year){
                             ero=n[i];
                         }
+                        input.get(i).setText(inputDate.get(j).getText()+"-"+inputDate.get(++j).getText()+"-"+inputDate.get(++j).getText());
+
                     }catch (Exception ex)
                     {
                         ero=n[i];
@@ -125,6 +131,7 @@ public class AddPanel extends JPanel {
             if  (ero!=null)
             {
 
+                JOptionPane.showMessageDialog(null,"Error in "+ero,"Error",JOptionPane.PLAIN_MESSAGE);
             }else {
                 String[] date;
                 int i = 0;
