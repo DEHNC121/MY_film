@@ -27,7 +27,7 @@ public class Panel extends JPanel {
         addButoon("Add","Team");
         addButoon("Add","Db_user");
         addButoon("Add","Studio");
-        addButoon("Add","Add Team");
+        addButoon("Add","Team");
 
         addButoon("List of films");
 
