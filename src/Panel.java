@@ -34,9 +34,7 @@ public class Panel extends JPanel {
 
         addButoon("Add","List_content","Db_user");
 
-
-
-        addButoon("List of films");
+        addButoonList("film","List of films");
 
     }
 
@@ -57,7 +55,7 @@ public class Panel extends JPanel {
         button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
         ActionListener le = (ActionEvent e) ->
         {
-            new Window(600,1000, new FilmListPanel("List of "+s3),"List of "+s3);
+            new Window(600,1000, new JScrollPane(new FilmListPanel(s3)),"List of "+s3);
         };
         button[j].addActionListener(le);
         add(button[j]);
@@ -69,20 +67,20 @@ public class Panel extends JPanel {
         button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
         ActionListener le = (ActionEvent e) ->
         {
-            new Window(600,1000, new FilmListPanel("List of "+s3),"List of "+s3);
+            new Window(600,1000, new JScrollPane(new FilmListPanel(s3)),"List of "+s3);
         };
         button[j].addActionListener(le);
         add(button[j]);
         return j++;
     }
 
-    public int addButoon(String s2)
+    public int addButoonList(String type, String title)
     {
-        button[j] =new JButton(s2);
+        button[j] =new JButton(title);
         button[j].setBounds(15+135*(j%4),12 + 62*(j/4),120,50);
         ActionListener le=(ActionEvent e) ->
         {
-            new Window(600,1000, new FilmListPanel("List of films"),"List of films");
+            new Window(600,1000, new JScrollPane(new FilmListPanel(type)),"List of films");
         };
         button[j].addActionListener(le);
         add(button[j]);
