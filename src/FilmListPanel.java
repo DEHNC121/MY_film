@@ -12,8 +12,9 @@ public class FilmListPanel extends JPanel {
     public FilmListPanel(String t) {
         setLayout(null);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setLayout(null);
         title = t.toLowerCase();
 
         check = new ArrayList();
@@ -22,7 +23,7 @@ public class FilmListPanel extends JPanel {
         JLabel Title = new JLabel(title);
         Title.setBounds(110, 10, 5000, 25);
         Title.setFont(font);
-        panel.add(Title);
+        scrollPane.add(Title);
 
         label = new ArrayList();
         ArrayList<String> s=Window.getApp().Print(Window.getApp().Select("SELECT * FROM film;"));
@@ -31,11 +32,9 @@ public class FilmListPanel extends JPanel {
             check.add(new JRadioButton(st[0]+" "+st[1]+" "+st[3]));
             bg.add(check.get(i));
             check.get(i).setBounds(10, 10 + 35 * i + 40, 3000, 25);
-            panel.add(check.get(i));
+            scrollPane.add(check.get(i));
         }
 
-
-        JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 
