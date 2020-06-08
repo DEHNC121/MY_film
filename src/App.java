@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 public class App {
-    private final String url = "jdbc:postgresql://dehncserver.postgres.database.azure.com/postgres";
-    private final String user = "dehnc@dehncserver";
-    private final String password = "kodkodkod1#";
     private Map<String, String> types;
     private Map<String, String> colTypes;
     public Connection connection;
@@ -65,6 +62,9 @@ public class App {
     public Connection connect() {
         Connection conn = null;
         try {
+            String url = "jdbc:postgresql://dehncserver.postgres.database.azure.com/postgres";
+            String user = "dehnc@dehncserver";
+            String password = "kodkodkod1#";
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("Connected to the PostgreSQL server successfully.");
         } catch (SQLException e) {
@@ -89,21 +89,6 @@ public class App {
 
     public Map<String, String> getColTypes() {
         return colTypes;
-    }
-
-    public ResultSet Find(String type, String name){
-        ResultSet set=null;
-        try{
-            type=type.toLowerCase();
-            if(type.equals("film")) set=statement.executeQuery("SELECT * FROM find_film('"+name+"')");
-            if(type.equals("episode")) set=statement.executeQuery("SELECT * FROM find_episode('"+name+"')");
-            if(type.equals("season")) set=statement.executeQuery("SELECT * FROM find_season('"+name+"')");
-            if(type.equals("series")) set=statement.executeQuery("SELECT * FROM find_series('"+name+"')");
-            else set=statement.executeQuery("SELECT 7");
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        return set;
     }
 
     public Pair<String,Integer> Update(String s, String[] args) {
@@ -163,10 +148,6 @@ public class App {
     }
     public static void main(String[] args) {
         App app = new App();
-        //app.Update("SEaSon",new String[]{"1","Season 1"," ","2016","2016-07-15","8"});
-        String[] sql = {"Select * from Film;", "Select * from series;", "Select * from season;"};
-        for(int i=0; i<sql.length;i++) app.Print(app.Select(sql[i]));
-
 
     }
 }
