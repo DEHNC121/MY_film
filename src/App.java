@@ -1,4 +1,4 @@
-import javafx.util.Pair;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -91,7 +91,7 @@ public class App {
         return colTypes;
     }
 
-    public Pair<String,Integer> Update(String s, String[] args) {
+    public String Update(String s, String[] args) {
         String end=null;
         try {
             int k=0;
@@ -110,9 +110,9 @@ public class App {
             insert+=");";
             end=insert;
             statement.executeUpdate(insert);
-            return new Pair<>(end+"\nUpdate successfully.",1);
+            return end+"\nUpdate successfully!!!";
         } catch (SQLException e) {
-            return new Pair<>(end+"\nPOSTGRESQL:"+e.getMessage(),0);
+            return end+"\nPOSTGRESQL:"+e.getMessage();
         }
     }
 
