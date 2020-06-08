@@ -32,15 +32,15 @@ public class ListPanel extends JPanel {
         for (int i = 0; i < s.size(); i++) {
             check.add(new JRadioButton(s.get(i)));
             bg.add(check.get(i));
-            check.get(i).setBounds(10, 10 + 35 * i + 40, 3000, 25);
+            check.get(i).setBounds(10, 10 + 35 * i + 40, 300, 25);
             panel.add(check.get(i));
         }
 
 
-        panel.setPreferredSize(new Dimension(400,300));
+        panel.setPreferredSize(new Dimension(400,600));
         JScrollPane scrollPane = new JScrollPane(panel);
 
-        scrollPane.setBounds(50, 30, 500, 300);
+        scrollPane.setBounds(50, 30, 500, 800);
 
         add(scrollPane);
     }
