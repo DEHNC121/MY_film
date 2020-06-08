@@ -197,16 +197,16 @@ public class AddPanel extends JPanel {
 
             }else {
                 String[] date;
-                date = new String[(buttonIndex==-1)? this.input.size() : this.input.size()+1];
-                int jj=0;
+                date = new String[this.input.size()];
+
                 for(int i=0; i<date.length; i++){
                     if(i!=buttonIndex){
-                        date[i]=this.input.get(jj).getText();
-                        System.out.println(this.input.get(jj).getText()+";;;;;;");
-                        jj++;
+                        date[i]=this.input.get(i).getText();
                     }
-                    else date[i]=buttonInput;
-                    System.out.println(jj);
+                    else
+                        {
+                            date[i]=buttonInput;
+                        }
                 }
 
                 Window.getApp().Update(this.title, date);

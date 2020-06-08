@@ -29,7 +29,7 @@ public class Panel extends JPanel {
         addButoon("Add","Character","Type");
 
         addButoon("Add","Team","Film");
-        addButoon("Add","Mark","Type");
+        addButoon("Add","Mark");
         addButoon("Add","List","Db_user");
 
         addButoon("Add","List_content","Db_user");
