@@ -69,7 +69,7 @@ public class AddPanel extends JPanel {
 
             } else if(s.charAt(i)=='b'){
                 hasButtons=true;
-                if (n[i].equals("colour")){
+                if (n[i].replaceAll("\\s+","").equals("colour")){
                     int j=radioButtons.size();
                     radioButtons.add(new JRadioButton("colour"));
                     bg.add(radioButtons.get(j));
@@ -82,8 +82,9 @@ public class AddPanel extends JPanel {
                     radioButtons.get(j).setBounds(30+200,10+35*i+40,120,25);
                     add(radioButtons.get(j));
                 }
-                if(n[i].equals("value")){
-                        radioButtons.add(new JRadioButton("0"));
+                else if (n[i].replaceAll("\\s+","").equals("value")){
+                    System.out.println(n[i]);
+                    radioButtons.add(new JRadioButton("0"));
                     radioButtons.add(new JRadioButton("0.5"));
                     radioButtons.add(new JRadioButton("1"));
                     radioButtons.add(new JRadioButton("1.5"));
@@ -94,9 +95,11 @@ public class AddPanel extends JPanel {
                     radioButtons.add(new JRadioButton("4"));
                     radioButtons.add(new JRadioButton("4.5"));
                     radioButtons.add(new JRadioButton("5"));
-                    for(int k=0; i<radioButtons.size(); k++){
-                        radioButtons.get(k).setBounds(110+(k-1)*20,10+35*i+40,40,25);
+                    System.out.println(radioButtons.size());
+                    for(int k=0; k<radioButtons.size(); k++){
+                        System.out.println(k);
                         bg.add(radioButtons.get(k));
+                        radioButtons.get(k).setBounds(110+k*60,10+35*i+40,60,25);
                         add(radioButtons.get(k));
                     }
                 }
@@ -164,12 +167,13 @@ public class AddPanel extends JPanel {
                     }
                 }
                 else if (s.charAt(i)=='b'){
+                    hasButtons=true;
                     buttonIndex=i;
-                    if(n[i].equals("colour")){
+                    if(n[i].replaceAll("\\s+","").equals("colour")){
                         if(radioButtons.get(0).isSelected()) buttonInput="'C'";
                         if(radioButtons.get(1).isSelected()) buttonInput="'B/W'";
                     }
-                    if(n[i].equals("value")){
+                    if(n[i].replaceAll("\\s+","").equals("value")){
                         if(radioButtons.get(0).isSelected()) buttonInput="0";
                         if(radioButtons.get(1).isSelected()) buttonInput="0.5";
                         if(radioButtons.get(2).isSelected()) buttonInput="1";
@@ -184,10 +188,13 @@ public class AddPanel extends JPanel {
                     }
                 }
             }
-            if  (ero!=null || (hasButtons==true && buttonIndex==-1))
+            if (hasButtons==true && buttonInput==null){
+                JOptionPane.showMessageDialog(null,"You have to choose a value","Error",JOptionPane.PLAIN_MESSAGE);
+            }
+            else if (ero!=null)
             {
-
                 JOptionPane.showMessageDialog(null,"Error in "+ero,"Error",JOptionPane.PLAIN_MESSAGE);
+
             }else {
                 String[] date;
                 date = new String[(buttonIndex==-1)? this.input.size() : this.input.size()+1];
@@ -195,9 +202,11 @@ public class AddPanel extends JPanel {
                 for(int i=0; i<date.length; i++){
                     if(i!=buttonIndex){
                         date[i]=this.input.get(jj).getText();
+                        System.out.println(this.input.get(jj).getText()+";;;;;;");
                         jj++;
                     }
                     else date[i]=buttonInput;
+                    System.out.println(jj);
                 }
 
                 Window.getApp().Update(this.title, date);

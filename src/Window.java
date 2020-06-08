@@ -36,6 +36,16 @@ public class Window
         window.setVisible(true );
     }
 
+    public Window (int width,int height,JScrollPane jsp,String name) {
+        window=new JFrame(name);
+        window.setSize(width,height);
+        window.add(jsp);
+        window.setLocationRelativeTo(null);
+        window.setResizable(false);
+        window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        window.setVisible(true );
+    }
+
     public static App getApp() {
         return app;
     }
