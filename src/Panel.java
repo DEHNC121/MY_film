@@ -8,36 +8,40 @@ public class Panel extends JPanel {
     int j;
     public Panel(){
         setLayout(null);
-        button =new JButton[30];
+        button =new JButton[40];
         j=0;
 
 
 
 
-        addButoon("New","Film");
-        addButoon("New" ,"Series");
-        addButoon("New","Genre");
-        addButoon("New","Studio");
-        addButoon("New","Country");
-        addButoon("New","Language");
-        addButoon("New","Db_user");
-        addButoon("New","Studio");
-        addButoon("New","Member");
+        addButoon("Film");
+        addButoon("Series");
+        addButoon("Genre");
+        addButoon("Studio");
+        addButoon("Country");
+        addButoon("Language");
+        addButoon("Db_user");
+        addButoon("Studio");
+        addButoon("Member");
 
-        addButoon("Add","Season","Series");
-        addButoon("Add","Episode","Season");
-        addButoon("Add","Character","Type");
+        addButoon("Season");
+        addButoon("Episode");
+        addButoon("Character");
 
-        addButoon("Add","Team","Film");
-        addButoon("Add","Mark");
-        addButoon("Add","List","Db_user");
-
-        addButoon("Add","List_content","Db_user");
-
-        addButoonList("film","List of films");
+        addButoon("Team");
+        addButoon("Mark");
+        addButoon("List");
+        addButoon("List_content");
+        addButoon("Film_genre");
+        addButoon("Film_Studio");
+        addButoon("Film_country");
+        addButoon("Film_language");
         addFuncButton("find film","find_film",'s');
 
+        addButoonList("film","List of films");
+
     }
+
     public int addFuncButton(String t, String f, char type){
         button[j]=new JButton(t);
         button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
@@ -49,41 +53,33 @@ public class Panel extends JPanel {
         add(button[j]);
         return j++;
     }
-    public int addButoon(String s1,String s2) {
-        button[j] = new JButton(s1 + " " + s2);
+
+
+    public int addButoon(String s1) {
+        button[j] = new JButton(s1 );
         button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
         ActionListener le = (ActionEvent e) ->
         {
-            new Window(350, 500, new AddPanel(s2), s1 + s2);
+            new Window(300, 115, new APanel(s1), s1);
         };
         button[j].addActionListener(le);
         add(button[j]);
         return j++;
     }
 
-    public int addButoon(String s1,String s2,String s3) {
-        button[j] = new JButton(s1 + " " + s2);
-        button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
-        ActionListener le = (ActionEvent e) ->
+    public int addButoonSee(String type, String title) {
+
+        button[j] =new JButton(title);
+        button[j].setBounds(15+135*(j%4),12 + 62*(j/4),120,50);
+        ActionListener le=(ActionEvent e) ->
         {
-            new Window(600,1000, new JScrollPane(new FilmListPanel(s3)),"List of "+s3);
+            new Window(600,1000, new JScrollPane(new FilmListPanel(type)),"List of films");
         };
         button[j].addActionListener(le);
         add(button[j]);
         return j++;
     }
 
-    public int addButoon(String s1,String s2,String s3,String s4) {
-        button[j] = new JButton(s1 + " " + s2);
-        button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
-        ActionListener le = (ActionEvent e) ->
-        {
-            new Window(600,1000, new JScrollPane(new FilmListPanel(s3)),"List of "+s3);
-        };
-        button[j].addActionListener(le);
-        add(button[j]);
-        return j++;
-    }
 
     public int addButoonList(String type, String title)
     {
