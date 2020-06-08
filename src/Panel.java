@@ -29,6 +29,8 @@ public class Panel extends JPanel {
         addButoon("Add","Studio");
         addButoon("Add","Team");
 
+        addButoon("Add","Mark");
+
         addButoon("List of films");
 
     }
@@ -39,7 +41,7 @@ public class Panel extends JPanel {
         button[j].setBounds(15+135*(j%4),12 + 62*(j/4),120,50);
         ActionListener le=(ActionEvent e) ->
         {
-            new Window(330,500, new AddPanel(s2),s1+s2);
+            new Window(350,500, new AddPanel(s2),s1+s2);
         };
         button[j].addActionListener(le);
         add(button[j]);
@@ -57,18 +59,6 @@ public class Panel extends JPanel {
         button[j].addActionListener(le);
         add(button[j]);
         return j++;
-    }
-
-    class ButtonFilm implements ActionListener{
-        private String title;
-        ButtonFilm(String s) {
-            title=s;
-        }
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-            new Window(600,1000, new FilmListPanel(title),"List of films");
-        }
     }
 
 

@@ -45,25 +45,25 @@ public class AddPanel extends JPanel {
                 inputDate.add(new JTextField());
                 inputDate.add(new JTextField());
 
-                inputDate.get(j).setBounds(110,10+35*i+40,40,25);
+                inputDate.get(j).setBounds(30+110,10+35*i+40,40,25);
                 add(inputDate.get(j));
 
                 j++;
-                inputDate.get(j).setBounds(160,10+35*i+40,25,25);
+                inputDate.get(j).setBounds(30+160,10+35*i+40,25,25);
                 add(inputDate.get(j));
                 j++;
 
-                inputDate.get(j).setBounds(195,10+35*i+40,25,25);
+                inputDate.get(j).setBounds(30+195,10+35*i+40,25,25);
                 add(inputDate.get(j));
 
                 JLabel lej=new JLabel("-");
 
-                lej.setBounds(153,10+35*i+40,10,25);
+                lej.setBounds(30+153,10+35*i+40,10,25);
 
                 add(lej);
 
                 lej=new JLabel("-");
-                lej.setBounds(188,10+35*i+40,10,25);
+                lej.setBounds(30+188,10+35*i+40,10,25);
 
                 add(lej);
 
@@ -73,13 +73,13 @@ public class AddPanel extends JPanel {
                     int j=radioButtons.size();
                     radioButtons.add(new JRadioButton("colour"));
                     bg.add(radioButtons.get(j));
-                    radioButtons.get(j).setBounds(110,10+35*i+40,80,25);
+                    radioButtons.get(j).setBounds(30+110,10+35*i+40,80,25);
                     add(radioButtons.get(j));
 
                     j++;
                     radioButtons.add(new JRadioButton("black/white"));
                     bg.add(radioButtons.get(j));
-                    radioButtons.get(j).setBounds(200,10+35*i+40,120,25);
+                    radioButtons.get(j).setBounds(30+200,10+35*i+40,120,25);
                     add(radioButtons.get(j));
                 }
                 if(n[i].equals("value")){
@@ -103,7 +103,7 @@ public class AddPanel extends JPanel {
             }
             else
                 {
-                    input.get(i).setBounds(110,10+35*i+40,180,25);
+                    input.get(i).setBounds(140,10+35*i+40,180,25);
                     add(input.get(i));
                 }
 
