@@ -58,7 +58,7 @@ public class App {
         colTypes.put("country","country");
         colTypes.put("film_country","film_id,type,country_id");
 
-        new Window(570,600,this);
+        new Window(680,600,this);
     }
     public Connection connect() {
         Connection conn = null;
