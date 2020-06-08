@@ -8,14 +8,14 @@ public class Panel extends JPanel {
     int j;
     public Panel(){
         setLayout(null);
-        button =new JButton[25];
+        button =new JButton[40];
         j=0;
 
 
 
 
         addButoon("New","Film");
-        addButoon("New" ,"Series");
+        addButoon("New","Series");
         addButoon("New","Genre");
         addButoon("New","Studio");
         addButoon("New","Country");
@@ -24,15 +24,18 @@ public class Panel extends JPanel {
         addButoon("New","Studio");
         addButoon("New","Member");
 
-        addButoon("Add","Season","Series");
-        addButoon("Add","Episode","Season");
-        addButoon("Add","Character","Type");
+        addButoon("Add","Season");
+        addButoon("Add","Episode");
+        addButoon("Add","Character");
 
-        addButoon("Add","Team","Film");
+        addButoon("Add","Team");
         addButoon("Add","Mark");
-        addButoon("Add","List","Db_user");
-
-        addButoon("Add","List_content","Db_user");
+        addButoon("Add","List");
+        addButoon("List_content");
+        addButoon("Film_genre");
+        addButoon("Film_Studio");
+        addButoon("Film_country");
+        addButoon("Film_language");
 
         addButoonList("film","List of films");
 
@@ -50,29 +53,18 @@ public class Panel extends JPanel {
         return j++;
     }
 
-    public int addButoon(String s1,String s2,String s3) {
-        button[j] = new JButton(s1 + " " + s2);
+    public int addButoon(String s1) {
+        button[j] = new JButton(s1 );
         button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
         ActionListener le = (ActionEvent e) ->
         {
-            new Window(600,1000, new JScrollPane(new FilmListPanel(s3)),"List of "+s3);
+            new Window(350, 500, new AddPanel(s1), s1);
         };
         button[j].addActionListener(le);
         add(button[j]);
         return j++;
     }
 
-    public int addButoon(String s1,String s2,String s3,String s4) {
-        button[j] = new JButton(s1 + " " + s2);
-        button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
-        ActionListener le = (ActionEvent e) ->
-        {
-            new Window(600,1000, new JScrollPane(new FilmListPanel(s3)),"List of "+s3);
-        };
-        button[j].addActionListener(le);
-        add(button[j]);
-        return j++;
-    }
 
     public int addButoonList(String type, String title)
     {
