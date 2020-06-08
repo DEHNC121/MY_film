@@ -130,6 +130,7 @@ public class App {
 
     public ResultSet Select(String s) {
         ResultSet set=null;
+        System.out.println(s);
         try {
             set=statement.executeQuery(s);
             System.out.println("Select successfully.");

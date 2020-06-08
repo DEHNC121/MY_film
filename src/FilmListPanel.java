@@ -9,36 +9,39 @@ public class FilmListPanel extends JPanel {
     private ButtonGroup bg= new ButtonGroup();
     private Font font = new Font("SanSerif",Font.BOLD,20);
     private String title;
+    JScrollPane scrollPane;
     public FilmListPanel(String t) {
         setLayout(null);
 
 
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setLayout(null);
+        JPanel panel=new JPanel();
+        panel.setLayout(null);
         title = t.toLowerCase();
 
         check = new ArrayList();
 
 
         JLabel Title = new JLabel(title);
-        Title.setBounds(110, 10, 5000, 25);
+        Title.setBounds(110, 10, 500, 25);
         Title.setFont(font);
-        scrollPane.add(Title);
+        add(Title);
+        panel.setLayout(null);
 
         label = new ArrayList();
-        ArrayList<String> s=Window.getApp().Print(Window.getApp().Select("SELECT * FROM film;"));
+        ArrayList<String> s=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+title+";"));
         for (int i = 0; i < s.size(); i++) {
             String[] st=s.get(i).split(Pattern.quote(" | "));
             check.add(new JRadioButton(st[0]+" "+st[1]+" "+st[3]));
             bg.add(check.get(i));
             check.get(i).setBounds(10, 10 + 35 * i + 40, 3000, 25);
-            scrollPane.add(check.get(i));
+            panel.add(check.get(i));
         }
 
 
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        panel.setPreferredSize(new Dimension(400,300));
+        JScrollPane scrollPane = new JScrollPane(panel);
 
-        scrollPane.setBounds(50, 30, 300, 1000);
+        scrollPane.setBounds(50, 30, 500, 300);
 
         add(scrollPane);
     }
