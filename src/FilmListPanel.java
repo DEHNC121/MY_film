@@ -30,8 +30,7 @@ public class FilmListPanel extends JPanel {
         label = new ArrayList();
         ArrayList<String> s=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+t+";"));
         for (int i = 0; i < s.size(); i++) {
-            String[] st=s.get(i).split(Pattern.quote(" | "));
-            check.add(new JRadioButton(st[0]+" "+st[1]+" "+st[3]));
+            check.add(new JRadioButton(s.get(i)));
             bg.add(check.get(i));
             check.get(i).setBounds(10, 10 + 35 * i + 40, 3000, 25);
             panel.add(check.get(i));
