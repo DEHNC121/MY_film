@@ -29,11 +29,7 @@ public class Panel extends JPanel {
         addButoon("Add","Studio");
         addButoon("Add","Add Team");
 
-        ActionListener le=(ActionEvent e) ->
-        {
-            new Window(600,1000, new FilmListPanel("List of films"),"List of films");
-        };
-        button[addButoon("Add","List of films")].addActionListener(le);
+        addButoon("List of films");
 
     }
 
@@ -44,6 +40,19 @@ public class Panel extends JPanel {
         ActionListener le=(ActionEvent e) ->
         {
             new Window(330,500, new AddPanel(s2),s1+s2);
+        };
+        button[j].addActionListener(le);
+        add(button[j]);
+        return j++;
+    }
+
+    public int addButoon(String s2)
+    {
+        button[j] =new JButton(s2);
+        button[j].setBounds(15+135*(j%4),12 + 62*(j/4),120,50);
+        ActionListener le=(ActionEvent e) ->
+        {
+            new Window(600,1000, new FilmListPanel("List of films"),"List of films");
         };
         button[j].addActionListener(le);
         add(button[j]);
