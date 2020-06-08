@@ -97,14 +97,15 @@ public class AddPanel extends JPanel {
                     radioButtons.add(new JRadioButton("4.5"));
                     radioButtons.add(new JRadioButton("5"));
 
+
+                    panel.setPreferredSize(new Dimension(675,40));
                     for(int k=0; k<radioButtons.size(); k++){
                         bg.add(radioButtons.get(k));
-                        radioButtons.get(k).setBounds(110+k*60,10+35*i+40,60,25);
+                        radioButtons.get(k).setBounds(10+k*60,2,60,25);//10+35*i+40
                         panel.add(radioButtons.get(k));
                     }
-                    panel.setPreferredSize(new Dimension(400,30));
                     JScrollPane scrollPane = new JScrollPane (panel);
-                    scrollPane.setBounds(140, 120, 400, 30);
+                    scrollPane.setBounds(140, 35*i+40, 200, 40);
                     add (scrollPane);
                 }
             }
