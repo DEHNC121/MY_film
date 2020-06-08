@@ -34,7 +34,14 @@ public class Window
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         window.setVisible(true );
+
     }
+
+    public static void Off()
+    {
+        window.dispose();
+    }
+
 
     public Window (int width,int height,JScrollPane jsp,String name) {
         window=new JFrame(name);

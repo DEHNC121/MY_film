@@ -1,3 +1,5 @@
+import javafx.util.Pair;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -98,14 +100,14 @@ public class AddPanel extends JPanel {
                     radioButtons.add(new JRadioButton("5"));
 
 
-                    panel.setPreferredSize(new Dimension(675,40));
+                    panel.setPreferredSize(new Dimension(670,20));
                     for(int k=0; k<radioButtons.size(); k++){
                         bg.add(radioButtons.get(k));
                         radioButtons.get(k).setBounds(10+k*60,2,60,25);//10+35*i+40
                         panel.add(radioButtons.get(k));
                     }
                     JScrollPane scrollPane = new JScrollPane (panel);
-                    scrollPane.setBounds(140, 35*i+40, 200, 40);
+                    scrollPane.setBounds(140, 35*i+42, 180, 40);
                     add (scrollPane);
                 }
             }
@@ -211,7 +213,18 @@ public class AddPanel extends JPanel {
                             date[i]=buttonInput;
                     }
                 }
-                JOptionPane.showMessageDialog(null,Window.getApp().Update(this.title, date),"Update",JOptionPane.PLAIN_MESSAGE);
+                Pair<String,Integer> p =Window.getApp().Update(this.title, date);
+                String test=p.getKey();
+                if (p.getValue()==1)
+                {
+                    JOptionPane.showMessageDialog(null,test,"Update",JOptionPane.PLAIN_MESSAGE);
+                    Window.Off();
+                }else
+                    {
+                        JOptionPane.showMessageDialog(null,test,"Error",JOptionPane.PLAIN_MESSAGE);
+
+                    }
+
             }
         };
         button.addActionListener(le);
