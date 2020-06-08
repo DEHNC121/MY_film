@@ -23,18 +23,20 @@ public class FilmListPanel extends JPanel {
         panel.setLayout(null);
 
         label = new ArrayList();
+        int max=0;
         ArrayList<String> s=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+t+";"));
         for (int i = 0; i < s.size(); i++) {
             label.add(new JLabel(s.get(i)));
+            if (s.get(i).length()>max) max=s.get(i).length();
             label.get(i).setBounds(10, 10 + 35 * i, 3000, 25);
             panel.add(label.get(i));
         }
 
 
-        panel.setPreferredSize(new Dimension(400,300));
+        panel.setPreferredSize(new Dimension(max*6,35*s.size()));
         JScrollPane scrollPane = new JScrollPane(panel);
 
-        scrollPane.setBounds(50, 50, 500, 300);
+        scrollPane.setBounds(50, 50, 500, 700);
 
         add(scrollPane);
     }
