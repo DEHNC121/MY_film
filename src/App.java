@@ -15,9 +15,9 @@ public class App {
         connection=connect();
         statement=stat(connection);
         types=new HashMap<>();
-        types.put("film","ssidis");
+        types.put("film","ssidib");
         types.put("type","is");
-        types.put("episode","ssiiis");
+        types.put("episode","ssiiib");
         types.put("series","ssidi");
         types.put("season","issidi");
         types.put("member","ss");
@@ -28,7 +28,7 @@ public class App {
         types.put("db_user","ssss");
         types.put("list","is");
         types.put("list_content","iii");
-        types.put("mark","iiiis");
+        types.put("mark","iibis");
         types.put("language","s");
         types.put("film_language","iisis");
         types.put("studio","sis");

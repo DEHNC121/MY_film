@@ -39,7 +39,7 @@ public class FilmListPanel extends JPanel {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 
-        scrollPane.setBounds(50, 30, 300, 100);
+        scrollPane.setBounds(50, 30, 300, 1000);
 
         add(scrollPane);
     }
