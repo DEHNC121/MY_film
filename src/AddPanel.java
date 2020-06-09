@@ -34,7 +34,15 @@ public class AddPanel extends JPanel {
 
         String s=Window.getApp().getTypes().get(title);
 
-        String[] n=Window.getApp().getColTypes().get(title).split(",");
+        String test1=Window.getApp().getColTypes().get(title);
+        String[] n;
+        if (test1==null)
+        {
+            n=Window.getApp().getColTypes().get(title+",id").split(",");
+        }else
+            {
+                n=test1.split(",");
+            }
 
         for (int i=0;i<s.length();i++)
         {

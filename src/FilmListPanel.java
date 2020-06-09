@@ -7,7 +7,6 @@ public class FilmListPanel extends JPanel {
     private ArrayList<JLabel>  label;
     private Font font = new Font("SanSerif",Font.BOLD,20);
     private String title;
-    JScrollPane scrollPane;
     public FilmListPanel(String t) {
         setLayout(null);
 
@@ -23,12 +22,39 @@ public class FilmListPanel extends JPanel {
         panel.setLayout(null);
 
         label = new ArrayList();
-        int max=0;
-        ArrayList<String> s=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+t+";"));
+        String test1=Window.getApp().getColTypes().get(title);
+        String[] n;
+
+        String t2="";
+        if (test1==null)
+        {
+            n=Window.getApp().getColTypes().get(title+",id").split(",");
+            t2+="id | ";
+            int i=0;
+            while (i<n.length)
+            {
+
+                t2+=n[i++]+" | ";
+            }
+        }else
+        {
+            n=test1.split(",");
+            int i=0;
+            while (i<n.length)
+            {
+
+                t2+=n[i++]+" | ";
+            }
+        }
+        JLabel labelT=new JLabel(t2);
+        labelT.setBounds(10, 10 , 3000, 25);
+        panel.add(labelT);
+        int max=t2.length();
+        ArrayList<String> s=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+title+";"));
         for (int i = 0; i < s.size(); i++) {
             label.add(new JLabel(s.get(i)));
             if (s.get(i).length()>max) max=s.get(i).length();
-            label.get(i).setBounds(10, 10 + 35 * i, 3000, 25);
+            label.get(i).setBounds(10, 10 + 35 * i+35, 3000, 25);
             panel.add(label.get(i));
         }
 

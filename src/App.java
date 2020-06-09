@@ -36,26 +36,31 @@ public class App {
         types.put("film_country","iii");
 
         colTypes=new HashMap<>();
-        colTypes.put("film","name,description,year,release_date,length,colour");
+        colTypes.put("film,id","name,description,year,release_date,length,colour");
         colTypes.put("type","type,name");
-        colTypes.put("episode","name,description, length,number,season_id,colour");
-        colTypes.put("series","name,description,year,release_date,seasons");
-        colTypes.put("season","series_id,name,description,year,release_date,seasons");
-        colTypes.put("member","name,sex");
+        colTypes.put("episode,id","name,description, length,number,season_id,colour");
+        colTypes.put("series,id","name,description,year,release_date,seasons");
+        colTypes.put("season,id","series_id,name,description,year,release_date,seasons");
+        colTypes.put("member,id","name,sex");
         colTypes.put("team","film_id,type,member_id,position");
         colTypes.put("character","film_id,type,member_id,name");
-        colTypes.put("genre","name,description");
+        colTypes.put("genre,id","name,description");
         colTypes.put("film_genre","film_id,type,genre_id");
-        colTypes.put("db_user","name,mail,login,password");
-        colTypes.put("list","user_id,title");
+        colTypes.put("db_user,id","name,mail,login,password");
+        colTypes.put("list,id","user_id,title");
         colTypes.put("list_content","list_id,film_id,type");
-        colTypes.put("mark","film_id, type, value, user_id, description");
-        colTypes.put("language","language");
+        colTypes.put("mark,id","film_id, type, value, user_id, description");
+        colTypes.put("language,id","language");
         colTypes.put("film_language","film_id,type,is_silent,language_id,form");
-        colTypes.put("studio","name,establishment_year,is_active");
+        colTypes.put("studio,id","name,establishment_year,is_active");
         colTypes.put("film_studio","film_id,type,studio_id");
-        colTypes.put("country","country");
+        colTypes.put("country,id","country");
         colTypes.put("film_country","film_id,type,country_id");
+
+        colTypes.put("all_content_names","id,name,type");
+        colTypes.put("all_ratings","name,rating");
+        colTypes.put("film_ratings","name,rating");
+        colTypes.put("series_ratings","name,rating");
 
         new Window(680,600,this);
     }
@@ -98,7 +103,7 @@ public class App {
             k=types.get(s).length();
             s=s.toLowerCase();
             String insert="INSERT INTO "+s+"(";
-            insert+=colTypes.get(s);
+            insert+=colTypes.get(s).split(",")[0];
             insert+=") VALUES (";
             String t=types.get(s);
             for(int i=0; i<k-1; i++){
