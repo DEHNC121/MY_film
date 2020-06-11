@@ -19,7 +19,7 @@ public class App {
         open.put("list_content","series");
         open.put("film_genre","series");
         open.put("film_studio","series");
-        open.put("episode","season");
+        open.put("episode","series");
         open.put("film_country","series");
         open.put("film_language","series");
         open.put("team","series");
@@ -33,7 +33,7 @@ public class App {
         types.put("type","is");
         types.put("episode","ssiiib");
         types.put("series","ssidi");
-        types.put("season","Kssidi");
+        types.put("season","issidi");
         types.put("member","ss");
         types.put("team","iiis");
         types.put("character","iiis");
@@ -103,13 +103,17 @@ public class App {
         return statement;
     }
 
-    public Map<String, String> getTypes() { return types; }
+    public Map<String, String> getTypes() {
+        return types;
+    }
 
     public Map<String, String> getColTypes() {
         return colTypes;
     }
 
-    public Map<String,String> getOpen(){ return open; }
+    public Map<String, String> getOpen() {
+        return open;
+    }
 
     public String Update(String s, String[] args) {
         String end=null;

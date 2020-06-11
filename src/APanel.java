@@ -28,9 +28,13 @@ public class APanel extends JPanel {
             button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
             ActionListener le = (ActionEvent e) -> {
                 Window.Off();
-                String window=Window.getApp().getOpen().get(title.toLowerCase());
-                if(window!=null)new Window(600, 700, new ListSelect(window,""), s);
-                else new Window(600, 700, new AddPanel(title,""), s);
+                if (Window.getApp().getOpen().get(title.toLowerCase())==null)
+                {
+                    new Window(350, 400, new AddPanel(title), s);
+                }else
+                    {
+                        new Window(600, 800, new ListSelect(title,""), s);
+                    }
             };
             button[j].addActionListener(le);
             add(button[j]);
