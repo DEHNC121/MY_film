@@ -39,6 +39,7 @@ public class Panel extends JPanel {
         addButoon("Film_Studio");
         addButoon("Film_country");
         addButoon("Film_language");
+
         addFuncButton("user's ratings","user_ratings",'s');
         addFuncButton("actors by film","film_actors",'s');
         addFuncButton("actors by series","series_actors",'s');
