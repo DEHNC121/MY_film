@@ -106,11 +106,10 @@ public class App {
             if  (colTypes.get(s)==null)
             {
                 insert+=colTypes.get(s+",id");
-            }else
-                {
+            }else {
 
                     insert+=colTypes.get(s);
-                }
+            }
             insert+=") VALUES (";
             String t=types.get(s);
             for(int i=0; i<k-1; i++){

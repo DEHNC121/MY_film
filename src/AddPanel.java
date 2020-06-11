@@ -141,10 +141,8 @@ public class AddPanel extends JPanel {
             String ero=null;
             int j=0;
             int year=0;
-            for (int i=0;i<s.length()&&ero==null;i++)
-            {
-                if  (s.charAt(i)=='s')
-                {
+            for (int i=0;i<s.length()&&ero==null;i++) {
+                if  (s.charAt(i)=='s') {
                     try {
                         if (n[i].equals("year")) {
                             year = Integer.parseInt(input.get(i).getText());
@@ -153,21 +151,17 @@ public class AddPanel extends JPanel {
                             }
                         }
                     }
-                    catch (Exception ex)
-                        {
+                    catch (Exception ex) {
                             ero=n[i];
-                        }
-                }else if (s.charAt(i)=='i')
-                {
+                    }
+                }else if (s.charAt(i)=='i') {
                     try{
                         Integer.parseInt( input.get(i).getText());
-                    }catch (Exception ex)
-                    {
+                    }catch (Exception ex) {
                         ero=n[i];
                     }
                 }
-                else if (s.charAt(i)=='d')
-                {
+                else if (s.charAt(i)=='d') {
                     try{
                         int test;
                         test=Integer.parseInt(inputDate.get(j).getText());
@@ -175,9 +169,7 @@ public class AddPanel extends JPanel {
                             ero=n[i];
                         }
                         input.get(i).setText(inputDate.get(j).getText()+"-"+inputDate.get(++j).getText()+"-"+inputDate.get(++j).getText());
-
-                    }catch (Exception ex)
-                    {
+                    }catch (Exception ex) {
                         ero=n[i];
                     }
                 }
@@ -206,8 +198,7 @@ public class AddPanel extends JPanel {
             if (hasButtons==true && buttonInput==null){
                 JOptionPane.showMessageDialog(null,"You have to choose a value","Error",JOptionPane.PLAIN_MESSAGE);
             }
-            else if (ero!=null)
-            {
+            else if (ero!=null) {
                 JOptionPane.showMessageDialog(null,"Error in "+ero,"Error",JOptionPane.PLAIN_MESSAGE);
 
             }else {
@@ -223,16 +214,12 @@ public class AddPanel extends JPanel {
                 }
                 String test=Window.getApp().Update(this.title, date);
                 String ok=test.substring(test.length()-3);
-                if (ok.equals("!!!"))
-                {
+                if (ok.equals("!!!")) {
                     JOptionPane.showMessageDialog(null,test,"Update",JOptionPane.PLAIN_MESSAGE);
                     Window.Off();
-                }else
-                    {
+                }else {
                         JOptionPane.showMessageDialog(null,test,"Error",JOptionPane.PLAIN_MESSAGE);
-
-                    }
-
+                }
             }
         };
         button.addActionListener(le);
