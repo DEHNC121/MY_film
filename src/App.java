@@ -103,7 +103,14 @@ public class App {
             k=types.get(s).length();
             s=s.toLowerCase();
             String insert="INSERT INTO "+s+"(";
-            insert+=colTypes.get(s).split(",")[0];
+            if  (colTypes.get(s)==null)
+            {
+                insert+=colTypes.get(s+",id");
+            }else
+                {
+
+                    insert+=colTypes.get(s);
+                }
             insert+=") VALUES (";
             String t=types.get(s);
             for(int i=0; i<k-1; i++){
