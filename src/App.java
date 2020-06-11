@@ -7,10 +7,15 @@ import java.util.Map;
 public class App {
     private Map<String, String> types;
     private Map<String, String> colTypes;
+    private Map<String, String> Open;
     public Connection connection;
     public Statement statement;
     public App()
     {
+        Open=new HashMap<>();
+        Open.put("season","series");
+
+
         connection=connect();
         statement=stat(connection);
         types=new HashMap<>();

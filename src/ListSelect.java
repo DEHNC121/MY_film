@@ -11,7 +11,7 @@ public class ListSelect extends JPanel {
     private ButtonGroup bg;
     private Font font = new Font("SanSerif",Font.BOLD,20);
     private String title;
-    private String insert;
+    private static String insert;
 
     public ListSelect(String selectFrom, String insertInto) {
         setLayout(null);

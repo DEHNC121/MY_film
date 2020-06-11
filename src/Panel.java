@@ -24,7 +24,6 @@ public class Panel extends JPanel {
         addButoon("Country");
         addButoon("Language");
         addButoon("Db_user");
-        addButoon("Studio");
         addButoon("Member");
 
         addButoon("Season");
@@ -50,7 +49,6 @@ public class Panel extends JPanel {
 
         addFuncButton("characters played by","characters_played",'s');
         addFuncButton("films by year","films_from",'s');
-        addButoonList("film","List of films");
 
     }
 
@@ -68,7 +66,7 @@ public class Panel extends JPanel {
 // all
 
     public int addButoon(String s1) {
-        button[j] = new JButton(s1 );
+        button[j] = new JButton(s1);
         button[j].setBounds(15 + 160 * (j % 4), 12 + 62 * (j / 4), 150, 50);
         ActionListener le = (ActionEvent e) ->
         {
@@ -94,18 +92,7 @@ public class Panel extends JPanel {
         return j++;
     }
 
-    public int addButoonList(String type, String title)
-    {
-        button[j] =new JButton(title);
-        button[j].setBounds(15+160*(j%4),12 + 62*(j/4),150,50);
-        ActionListener le=(ActionEvent e) ->
-        {
-            new Window(600,800, new JScrollPane(new FilmListPanel(type)),"List of films");
-        };
-        button[j].addActionListener(le);
-        add(button[j]);
-        return j++;
-    }
+
 
 
 }
