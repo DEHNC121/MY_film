@@ -7,13 +7,25 @@ import java.util.Map;
 public class App {
     private Map<String, String> types;
     private Map<String, String> colTypes;
-    private Map<String, String> Open;
+    private Map<String, String> open;
     public Connection connection;
     public Statement statement;
     public App()
     {
-        Open=new HashMap<>();
-        Open.put("season","series");
+        open=new HashMap<>();
+        open.put("season","series");
+        open=new HashMap<>();
+        open.put("season","series");
+        open.put("mark","type");
+        open.put("list","series");
+        open.put("list_content","series");
+        open.put("film_genre","series");
+        open.put("film_studio","series");
+        open.put("episode","series");
+        open.put("film_country","series");
+        open.put("film_language","series");
+        open.put("team","series");
+        open.put("character","series");
 
 
         connection=connect();

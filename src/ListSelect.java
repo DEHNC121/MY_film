@@ -27,6 +27,8 @@ public class ListSelect extends JPanel {
         panel.setLayout(null);
 
         label = new ArrayList();
+        buttons=new ArrayList<>();
+        bg=new ButtonGroup();
         String test1=Window.getApp().getColTypes().get(title);
         String[] n;
 
@@ -74,6 +76,7 @@ public class ListSelect extends JPanel {
                     input=label.get(i).getText();
                }
             }
+            System.out.println("OK");
             //new Window(350, 500, new AddPanel(title), s);
         };
         button.addActionListener(le);
