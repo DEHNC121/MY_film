@@ -11,7 +11,7 @@ public class ListSelect extends JPanel {
     private ButtonGroup bg;
     private Font font = new Font("SanSerif",Font.BOLD,20);
     private String title;
-    private static String insert;
+    private String insert;
 
     public ListSelect(String selectFrom, String insertInto) {
         setLayout(null);
@@ -68,16 +68,18 @@ public class ListSelect extends JPanel {
         add(scrollPane);
 
         JButton button =new JButton("Submit");
-        button.setBounds(100,400,120,50);
+        button.setBounds(100,600,120,50);
         ActionListener le=(ActionEvent e) ->{
-            String input;
             for(int i=0; i<buttons.size(); i++){
                 if(buttons.get(i).isSelected()){
-                    input=label.get(i).getText();
+                    insert+=label.get(i).getText();
                }
             }
             System.out.println("OK");
-            //new Window(350, 500, new AddPanel(title), s);
+            Window.Off();
+            String window=Window.getApp().getOpen().get(title.toLowerCase());
+            if(window!=null)new Window(600, 700, new ListSelect(window,insert), window);
+            else new Window(600, 700, new AddPanel(title,insert), Window.getApp().getOpen().get(Window.getApp().getOpen().get(title.toLowerCase())));
         };
         button.addActionListener(le);
         add(button);

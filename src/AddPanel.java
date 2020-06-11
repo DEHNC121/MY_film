@@ -17,7 +17,7 @@ public class AddPanel extends JPanel {
     private String title;
     private boolean hasButtons;
 
-    public AddPanel(String t){
+    public AddPanel(String t, String toInsert){
         title=t.toLowerCase();
         setLayout(null);
         hasButtons=false;
@@ -118,13 +118,13 @@ public class AddPanel extends JPanel {
                     scrollPane.setBounds(140, 35*i+42, 180, 40);
                     add (scrollPane);
                 }
-            }
-            else
-                {
-                    input.get(i).setBounds(140,10+35*i+40,180,25);
-                    add(input.get(i));
-                }
+            } else if(s.charAt(i)=='K'){
 
+            }
+            else {
+                input.get(i).setBounds(140,10+35*i+40,180,25);
+                add(input.get(i));
+            }
             label.add(new JLabel(n[i]+":"));
             label.get(i).setBounds(10,10+35*i+40,180,25);
             label.get(i).setFont(Window.Sfont);
@@ -203,22 +203,44 @@ public class AddPanel extends JPanel {
 
             }else {
                 String[] date;
-                date = new String[this.input.size()];
-                for(int i=0; i<date.length; i++){
-                    if(i!=buttonIndex){
-                        date[i]=this.input.get(i).getText();
-                    }
-                    else {
+                if(!toInsert.equals("")){
+                    date = new String[this.input.size()+1];
+                    date[0]=toInsert;
+                    for(int i=1; i<date.length; i++){
+                        if(i!=buttonIndex){
+                            date[i]=this.input.get(i).getText();
+                        }
+                        else {
                             date[i]=buttonInput;
+                        }
+                    }
+                    String test=Window.getApp().Update(this.title, date);
+                    String ok=test.substring(test.length()-3);
+                    if (ok.equals("!!!")) {
+                        JOptionPane.showMessageDialog(null,test,"Update",JOptionPane.PLAIN_MESSAGE);
+                        Window.Off();
+                    }else {
+                        JOptionPane.showMessageDialog(null,test,"Error",JOptionPane.PLAIN_MESSAGE);
                     }
                 }
-                String test=Window.getApp().Update(this.title, date);
-                String ok=test.substring(test.length()-3);
-                if (ok.equals("!!!")) {
-                    JOptionPane.showMessageDialog(null,test,"Update",JOptionPane.PLAIN_MESSAGE);
-                    Window.Off();
-                }else {
+                else {
+                    date = new String[this.input.size()];
+                    for(int i=0; i<date.length; i++){
+                        if(i!=buttonIndex){
+                            date[i]=this.input.get(i).getText();
+                        }
+                        else {
+                            date[i]=buttonInput;
+                        }
+                    }
+                    String test=Window.getApp().Update(this.title, date);
+                    String ok=test.substring(test.length()-3);
+                    if (ok.equals("!!!")) {
+                        JOptionPane.showMessageDialog(null,test,"Update",JOptionPane.PLAIN_MESSAGE);
+                        Window.Off();
+                    }else {
                         JOptionPane.showMessageDialog(null,test,"Error",JOptionPane.PLAIN_MESSAGE);
+                    }
                 }
             }
         };
