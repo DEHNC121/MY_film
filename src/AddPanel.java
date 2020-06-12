@@ -34,20 +34,15 @@ public class AddPanel extends JPanel {
 
         String test1=Window.getApp().getColTypes().get(title);
         String[] n;
-        if (test1==null)
-        {
+        if (test1==null) {
             n=Window.getApp().getColTypes().get(title+",id").split(",");
-        }else
-            {
-                n=test1.split(",");
-            }
+        }else {
+            n=test1.split(",");
+        }
 
-        for (int i=0;i<s.length();i++)
-        {
+        for (int i=0;i<s.length();i++) {
             input.add(new JTextField());
-            if (s.charAt(i)=='d')
-            {
-
+            if (s.charAt(i)=='d') {
                 int j=inputDate.size();
                 inputDate.add(new JTextField());
                 inputDate.add(new JTextField());
@@ -148,7 +143,8 @@ public class AddPanel extends JPanel {
                 input.get(i).setBounds(140,10+35*i+40,180,25);
                 add(input.get(i));
             }
-            label.add(new JLabel(n[i]+":"));
+            if(!n[i].equals("release_date")) label.add(new JLabel(n[i]+":"));
+            else label.add(new JLabel(n[i]+" [yyyy-mm-dd]:"));
             label.get(i).setBounds(10,10+35*i+40,180,25);
             label.get(i).setFont(Window.Sfont);
             add(label.get(i));
@@ -159,45 +155,52 @@ public class AddPanel extends JPanel {
 
         ActionListener le=(ActionEvent e) ->
         {
-            String ero=null;
+            int buttonIndex=-1;
+            String buttonInput=null;
+            String error=null;
             int j=0;
             int year=0;
-            for (int i=0;i<s.length()&&ero==null;i++) {
+            for (int i=0; i<s.length() && error==null; i++) {
                 if  (s.charAt(i)=='s') {
                     try {
-                                if (input.get(i).getText().equals(""))
-                                {
-                                    ero=n[i];
-                                }
+                        if (input.get(i).getText().equals("")) {
+                            error="you have to fill all of the fields";
+                        }
                     }
                     catch (Exception ex) {
-                            ero=n[i];
+                            error="input in field "+ n[i]+" is incorrect";
                     }
                 }else if (s.charAt(i)=='i') {
-
                     try{
                         if (n[i].equals("year")) {
                             year = Integer.parseInt(input.get(i).getText());
-                            if (year <= 1910) {
-                                ero = n[i];
-                            }
+                            if (year < 1910) error = "earliest possible year is 1910";
+
                         }
-                        else
-                        Integer.parseInt( input.get(i).getText());
-                    }catch (Exception ex) {
-                        ero=n[i];
+                        else if(n[i].equals("length")){
+                            int parse=Integer.parseInt( input.get(i).getText());
+                            if(parse<=0) error="input in field "+ n[i]+" must be greater than 0";
+                        }
+                        else Integer.parseInt( input.get(i).getText());
+                    }catch (NumberFormatException ex) {
+                        error=input.get(i).getText()+" is not a natural number";
                     }
                 }
                 else if (s.charAt(i)=='d') {
                     try{
-                        int test;
-                        test=Integer.parseInt(inputDate.get(j).getText());
-                        if (test<year){
-                            ero=n[i];
+                        int k=j;
+                        String d=inputDate.get(j).getText()+"-"+inputDate.get(++j).getText()+"-"+inputDate.get(++j).getText();
+                        int yyyy=Integer.parseInt(inputDate.get(k).getText());
+                        int mm=Integer.parseInt(inputDate.get(++k).getText());
+                        int dd=Integer.parseInt(inputDate.get(++k).getText());
+                        if (yyyy<year){
+                            error="year of release_date can't be earlier than 'year'";
                         }
-                        input.get(i).setText(inputDate.get(j).getText()+"-"+inputDate.get(++j).getText()+"-"+inputDate.get(++j).getText());
-                    }catch (Exception ex) {
-                        ero=n[i];
+                        else if(mm<1 || mm>12) error= mm +" is not a correct month";
+                        else if(dd<1 || dd>31) error= dd +" is not a correct day";
+                        input.get(i).setText(d);
+                    }catch (NumberFormatException ex) {
+                        error="release_date is not correct";
                     }
                 }
                 else if (s.charAt(i)=='b'){
@@ -220,8 +223,8 @@ public class AddPanel extends JPanel {
                     }
                 }
             }
-            if (ero!=null) {
-                JOptionPane.showMessageDialog(null,"Error in "+ero,"Error",JOptionPane.PLAIN_MESSAGE);
+            if (error!=null) {
+                JOptionPane.showMessageDialog(null,"Error: "+error,"Error",JOptionPane.PLAIN_MESSAGE);
 
             }else {
                 String[] date;
