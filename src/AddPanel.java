@@ -229,13 +229,11 @@ public class AddPanel extends JPanel {
             }else {
                 String[] date;
                 if(!toInsert.equals("")){
-                    date = new String[this.input.size()+1];
-                    date[0]=toInsert;
-                    for(int i=1; i<date.length; i++){
-
-                        date[i]=this.input.get(i).getText();
+                    date = new String[input.size()];
+                    for(int i=0; i<date.length; i++){
+                        date[i]=input.get(i).getText();
                     }
-                    String test=Window.getApp().Update(this.title, date);
+                    String test=Window.getApp().Update(title, date);
                     String ok=test.substring(test.length()-3);
                     if (ok.equals("!!!")) {
                         JOptionPane.showMessageDialog(null,test,"Update",JOptionPane.PLAIN_MESSAGE);
