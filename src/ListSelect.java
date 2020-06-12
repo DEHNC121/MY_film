@@ -170,51 +170,42 @@ public class ListSelect extends JPanel {
                 label.get(i).setFont(font);
                 panel.add(label.get(i));
             }
+            buttons.get(0).setSelected(true);
 
-                buttons.get(0).setSelected(true);
+            JButton button =new JButton("Next");
+            button.setBounds(100,600,120,50);
 
-                JButton button =new JButton("Next");
-                button.setBounds(100,600,120,50);
-
-                ActionListener le=(ActionEvent e) ->{
-
-                    for(int i=0; i<buttons.size(); i++){
-                        if(buttons.get(i).isSelected()){
-                            if (go)
-                            {
-                                String add="";
-                                int te=insert.split(",").length;
-                                for(int i1=0; i1<te; i1++)
-                                {
-                                    if (i1+1==te)
-                                    {
-                                        add+=label.get(i).getText().split(Pattern.quote(" | "))[0]+",";
-                                    }else
-                                        {
-                                            if (in==2 &&i1==0&& insert.split(",", -1)[in-2].equals("2b"))
-                                            add+="2a,";
-                                            else if(in==2 &&i1==0
-                                                    && insert.split(",", -1)[in-2].substring(insert.split(",", -1)[in-2].length()-1).equals("a"))
+            ActionListener le=(ActionEvent e) ->{
+                for(int i=0; i<buttons.size(); i++){
+                    if(buttons.get(i).isSelected()){
+                        if (go) {
+                            String add="";
+                            int te=insert.split(",").length;
+                            for(int i1=0; i1<te; i1++) {
+                                if (i1+1==te) {
+                                    add+=label.get(i).getText().split(Pattern.quote(" | "))[0]+",";
+                                }else {
+                                    if (in==2 &&i1==0&& insert.split(",", -1)[in-2].equals("2b"))
+                                        add+="2a,";
+                                    else if(in==2 &&i1==0
+                                            && insert.split(",", -1)[in-2].substring(insert.split(",", -1)[in-2].length()-1).equals("a"))
                                                 add+=insert.split(",")[i1].substring(0,insert.split(",")[i1].length()-1)+",";
-                                            else if (in==2 &&i1==0&& insert.split(",", -1)[in-2].equals("3b"))
-                                                add+="3,";
-                                            else
-                                            add+=insert.split(",")[i1];
-                                        }
-                                }
-                                insert=add;
-                            }
-                            else if (go1)
-                            {
-                                String add="";
-                                int te=insert.split(",").length;
-                                for(int i1=0; i1<te; i1++) {
-                                    if (i1 == 0)
-                                    {
-                                        add += insert.split(",")[i1] + "b,";
-                                    }
+                                    else if (in==2 &&i1==0&& insert.split(",", -1)[in-2].equals("3b"))
+                                        add+="3,";
                                     else
-                                        add += insert.split(",")[i1];
+                                        add+=insert.split(",")[i1];
+                                }
+                            }
+                            insert=add;
+                        }
+                        else if (go1) {
+                            String add="";
+                            int te=insert.split(",").length;
+                            for(int i1=0; i1<te; i1++) {
+                                if (i1 == 0) {
+                                    add += insert.split(",")[i1] + "b,";
+                                }
+                                else add += insert.split(",")[i1];
                                 }
                                 insert=add+label.get(i).getText().split(Pattern.quote(" | "))[0]+",";
                             }else

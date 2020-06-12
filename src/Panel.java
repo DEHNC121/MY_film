@@ -53,9 +53,9 @@ public class Panel extends JPanel {
     public int addFuncButton(String t, String f, char type, String s){
         button[j]=new JButton(t);
         button[j].setBounds(15 + 160 * (j % 4), 12 + 62 * (j / 4), 150, 50);
-        ActionListener le = (ActionEvent e) ->
-        {
-            new Window(350, 500, new FuncPanel(t,f,type,s), t);
+        ActionListener le = (ActionEvent e) -> {
+            JLabel l=new JLabel(s);
+            new Window(400, 200, new FuncPanel(t,f,type,s), t);
         };
         button[j].addActionListener(le);
         add(button[j]);
