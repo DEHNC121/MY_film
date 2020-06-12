@@ -132,7 +132,7 @@ public class App {
                     {
                         if (i+1!=tab.length)
                         {
-                            insert+= tab[i]+"="+args[i]+" and";
+                            insert+= tab[i]+"="+args[i]+" and ";
                         }
                         else
                             {
