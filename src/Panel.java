@@ -38,13 +38,13 @@ public class Panel extends JPanel {
         addButoon("Film_country");
         addButoon("Film_language");
 
-        addFuncButton("user's ratings","user_ratings",'s',"");
-        addFuncButton("actors by film","film_actors",'s',"");
-        addFuncButton("actors by series","series_actors",'s',"");
-        addFuncButton("film by name","find_film",'s',"");
-        addFuncButton("series by name","find_series",'s',"");
-        addFuncButton("season by name","find_season",'s',"");
-        addFuncButton("episode by name","find_episode",'s',"");
+        addFuncButton("user's ratings","user_ratings",'s',"Give user by name and get ratings");
+        addFuncButton("actors by film","film_actors",'s',"Give film title and get actors who played in");
+        addFuncButton("actors by series","series_actors",'s',"Give series title and get actors who played in");
+        addFuncButton("film by name","find_film",'s',"Give actors name and get films titles");
+        addFuncButton("series by name","find_series",'s',"Give actors name and get series titles");
+        addFuncButton("season by name","find_season",'s',"Give actors name and get seasons titles");
+        addFuncButton("episode by name","find_episode",'s',"Give actors name and get episodes titles");
 
         addFuncButton("characters played by","characters_played",'s',"");
         addFuncButton("films by year","films_from",'s',"");
