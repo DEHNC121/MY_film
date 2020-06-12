@@ -9,12 +9,10 @@ public class Window
     public static Font Sfont;
 
     public Window (int width,int height,App a) {
-        if(Sfont==null)
-        {
+        if(Sfont==null) {
             Sfont = new Font("SanSerif",Font.BOLD,14);
         }
-        if(a!=null)
-        {
+        if(a!=null) {
             app=a;
         }
         window=new JFrame("MY_film");

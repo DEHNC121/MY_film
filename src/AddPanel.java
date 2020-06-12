@@ -234,33 +234,19 @@ public class AddPanel extends JPanel {
 
             }else {
                 String[] date;
-                if(!toInsert.equals("")){
-                    date = new String[input.size()];
-                    for(int i=0; i<date.length; i++){
-                        date[i]=input.get(i).getText();
-                    }
-                    String test=Window.getApp().Update(title, date);
-                    String ok=test.substring(test.length()-3);
-                    if (ok.equals("!!!")) {
-                        JOptionPane.showMessageDialog(null,test,"Update",JOptionPane.PLAIN_MESSAGE);
-                        Window.Off();
-                    }else {
-                        JOptionPane.showMessageDialog(null,test,"Error",JOptionPane.PLAIN_MESSAGE);
-                    }
+                date = new String[input.size()];
+                for(int i=0; i<date.length; i++){
+                    date[i]=input.get(i).getText();
                 }
-                else {
-                    date = new String[input.size()];
-                    for(int i=0; i<date.length; i++){
-                            date[i]=input.get(i).getText();
-                    }
-                    String test=Window.getApp().Update(this.title, date);
-                    String ok=test.substring(test.length()-3);
-                    if (ok.equals("!!!")) {
-                        JOptionPane.showMessageDialog(null,test,"Update",JOptionPane.PLAIN_MESSAGE);
-                        Window.Off();
-                    }else {
-                        JOptionPane.showMessageDialog(null,test,"Error",JOptionPane.PLAIN_MESSAGE);
-                    }
+                String test=Window.getApp().Update(title, date);
+                String ok=test.substring(test.length()-3);
+                if (ok.equals("!!!")) {
+                    String text="New "+title+" has been added";
+                    JOptionPane.showMessageDialog(null,text,"Update",JOptionPane.PLAIN_MESSAGE);
+                    Window.Off();
+                }else {
+                    String text="ERROR: row with values"+test.substring(test.indexOf("Key (")+3,test.lastIndexOf(")")+1)+" already exists";
+                    JOptionPane.showMessageDialog(null,text,"Error",JOptionPane.PLAIN_MESSAGE);
                 }
             }
         };
