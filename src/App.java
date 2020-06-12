@@ -19,7 +19,7 @@ public class App {
         open.put("list_content","series");
         open.put("film_genre","series");
         open.put("film_studio","series");
-        open.put("episode","series");
+        open.put("episode","series,season");
         open.put("film_country","series");
         open.put("film_language","series");
         open.put("team","series");

@@ -90,6 +90,9 @@ public class AddPanel extends JPanel {
                     radioButtons.add(new JRadioButton("black/white"));
                     bg.add(radioButtons.get(j));
                     radioButtons.get(j).setBounds(30+200,10+35*i+40,120,25);
+
+                    radioButtons.get(0).setSelected(true);
+
                     add(radioButtons.get(j));
                 }
                 else if (n[i].replaceAll("\\s+","").equals("value")){
@@ -107,6 +110,7 @@ public class AddPanel extends JPanel {
                     radioButtons.add(new JRadioButton("4.5"));
                     radioButtons.add(new JRadioButton("5"));
 
+                    radioButtons.get(0).setSelected(true);
 
                     panel.setPreferredSize(new Dimension(670,20));
                     for(int k=0; k<radioButtons.size(); k++){
@@ -118,8 +122,30 @@ public class AddPanel extends JPanel {
                     scrollPane.setBounds(140, 35*i+42, 180, 40);
                     add (scrollPane);
                 }
-            } else if(s.charAt(i)=='K'){
+            } else if(n[i].equals("type")){
+                input.get(i).setText(toInsert.split(",")[0]);
 
+                JLabel L=new JLabel("Already chosen");
+                L.setBounds(140,10+35*i+40,180,25);
+                add(L);
+            }
+            else if(n[i].equals("film_id")){
+                input.get(i).setText(toInsert.split(",")[1]);
+                JLabel L=new JLabel("Already chosen");
+                L.setBounds(140,10+35*i+40,180,25);
+                add(L);
+            }
+            else if(n[i].contains("id")){
+                if (toInsert.split(",").length==1)
+                input.get(i).setText(toInsert.split(",")[0]);
+                else if (toInsert.split(",").length==2)
+                    input.get(i).setText(toInsert.split(",")[1]);
+                else
+                    input.get(i).setText(toInsert.split(",")[2]);
+
+                JLabel L=new JLabel("Already chosen");
+                L.setBounds(140,10+35*i+40,180,25);
+                add(L);
             }
             else {
                 input.get(i).setBounds(140,10+35*i+40,180,25);
@@ -144,18 +170,24 @@ public class AddPanel extends JPanel {
             for (int i=0;i<s.length()&&ero==null;i++) {
                 if  (s.charAt(i)=='s') {
                     try {
+                                if (input.get(i).getText().equals(""))
+                                {
+                                    ero=n[i];
+                                }
+                    }
+                    catch (Exception ex) {
+                            ero=n[i];
+                    }
+                }else if (s.charAt(i)=='i') {
+
+                    try{
                         if (n[i].equals("year")) {
                             year = Integer.parseInt(input.get(i).getText());
                             if (year <= 1910) {
                                 ero = n[i];
                             }
                         }
-                    }
-                    catch (Exception ex) {
-                            ero=n[i];
-                    }
-                }else if (s.charAt(i)=='i') {
-                    try{
+                        else
                         Integer.parseInt( input.get(i).getText());
                     }catch (Exception ex) {
                         ero=n[i];
@@ -195,10 +227,7 @@ public class AddPanel extends JPanel {
                     }
                 }
             }
-            if (hasButtons==true && buttonInput==null){
-                JOptionPane.showMessageDialog(null,"You have to choose a value","Error",JOptionPane.PLAIN_MESSAGE);
-            }
-            else if (ero!=null) {
+            if (ero!=null) {
                 JOptionPane.showMessageDialog(null,"Error in "+ero,"Error",JOptionPane.PLAIN_MESSAGE);
 
             }else {

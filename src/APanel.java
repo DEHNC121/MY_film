@@ -30,7 +30,7 @@ public class APanel extends JPanel {
                 Window.Off();
                 if (Window.getApp().getOpen().get(title.toLowerCase())==null)
                 {
-                    new Window(350, 400, new AddPanel(title), s);
+                    new Window(350, 400, new AddPanel(title,""), s);
                 }else
                     {
                         new Window(600, 800, new ListSelect(title,""), s);
@@ -41,4 +41,6 @@ public class APanel extends JPanel {
         }
         j++;
     }
+
+
 }
