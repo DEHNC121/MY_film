@@ -14,16 +14,16 @@ public class App {
     {
         open=new HashMap<>();
         open.put("season","series");
-        open.put("mark","type");
-        open.put("list","series");
-        open.put("list_content","series");
-        open.put("film_genre","series");
-        open.put("film_studio","series");
+        open.put("mark","type,film,db_user");
+        open.put("list","db_user");
+        open.put("list_content","type,film,list");
+        open.put("film_genre","type,film,genre");
+        open.put("film_studio","type,film,studio");
         open.put("episode","series,season");
-        open.put("film_country","series");
-        open.put("film_language","series");
-        open.put("team","series");
-        open.put("character","series");
+        open.put("film_country","type,film,country");
+        open.put("film_language","type,film,language");
+        open.put("team","type,film,member");
+        open.put("character","type,film,member");
 
 
         connection=connect();
@@ -64,7 +64,7 @@ public class App {
         colTypes.put("db_user,id","name,mail,login,password");
         colTypes.put("list,id","user_id,title");
         colTypes.put("list_content","list_id,film_id,type");
-        colTypes.put("mark,id","film_id, type, value, user_id, description");
+        colTypes.put("mark,id","film_id,type,value,user_id,description");
         colTypes.put("language,id","language");
         colTypes.put("film_language","film_id,type,is_silent,language_id,form");
         colTypes.put("studio,id","name,establishment_year,is_active");

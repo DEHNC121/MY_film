@@ -15,12 +15,10 @@ public class AddPanel extends JPanel {
     private ButtonGroup bg;
     private Font font = new Font("SanSerif",Font.BOLD,20);
     private String title;
-    private boolean hasButtons;
 
     public AddPanel(String t, String toInsert){
         title=t.toLowerCase();
         setLayout(null);
-        hasButtons=false;
         input=new ArrayList();
         inputDate=new ArrayList();
         radioButtons=new ArrayList<>();
@@ -36,15 +34,20 @@ public class AddPanel extends JPanel {
 
         String test1=Window.getApp().getColTypes().get(title);
         String[] n;
-        if (test1==null) {
+        if (test1==null)
+        {
             n=Window.getApp().getColTypes().get(title+",id").split(",");
-        }else {
-            n=test1.split(",");
-        }
+        }else
+            {
+                n=test1.split(",");
+            }
 
-        for (int i=0;i<s.length();i++) {
+        for (int i=0;i<s.length();i++)
+        {
             input.add(new JTextField());
-            if (s.charAt(i)=='d') {
+            if (s.charAt(i)=='d')
+            {
+
                 int j=inputDate.size();
                 inputDate.add(new JTextField());
                 inputDate.add(new JTextField());
@@ -73,7 +76,6 @@ public class AddPanel extends JPanel {
                 add(lej);
 
             } else if(s.charAt(i)=='b'){
-                hasButtons=true;
                 if (n[i].replaceAll("\\s+","").equals("colour")){
                     int j=radioButtons.size();
                     radioButtons.add(new JRadioButton("colour"));
@@ -146,8 +148,7 @@ public class AddPanel extends JPanel {
                 input.get(i).setBounds(140,10+35*i+40,180,25);
                 add(input.get(i));
             }
-            if(!n[i].equals("release_date")) label.add(new JLabel(n[i]+":"));
-            else label.add(new JLabel(n[i]+" [yyyy-mm-dd]:"));
+            label.add(new JLabel(n[i]+":"));
             label.get(i).setBounds(10,10+35*i+40,180,25);
             label.get(i).setFont(Window.Sfont);
             add(label.get(i));
@@ -158,78 +159,69 @@ public class AddPanel extends JPanel {
 
         ActionListener le=(ActionEvent e) ->
         {
-            int buttonIndex=-1;
-            String buttonInput=null;
-            String error=null;
+            String ero=null;
             int j=0;
             int year=0;
-            for (int i=0; i<s.length() && error==null; i++) {
+            for (int i=0;i<s.length()&&ero==null;i++) {
                 if  (s.charAt(i)=='s') {
                     try {
-                        if (input.get(i).getText().equals("")) {
-                            error="you have to fill all of the fields";
-                        }
+                                if (input.get(i).getText().equals(""))
+                                {
+                                    ero=n[i];
+                                }
                     }
                     catch (Exception ex) {
-                            error="input in field "+ n[i]+" is incorrect";
+                            ero=n[i];
                     }
                 }else if (s.charAt(i)=='i') {
+
                     try{
                         if (n[i].equals("year")) {
                             year = Integer.parseInt(input.get(i).getText());
-                            if (year < 1910) error = "earliest possible year is 1910";
-
+                            if (year <= 1910) {
+                                ero = n[i];
+                            }
                         }
-                        else if(n[i].equals("length")){
-                            int parse=Integer.parseInt( input.get(i).getText());
-                            if(parse<=0) error="input in field "+ n[i]+" must be greater than 0";
-                        }
-                        else Integer.parseInt( input.get(i).getText());
-                    }catch (NumberFormatException ex) {
-                        error=input.get(i).getText()+" is not a natural number";
+                        else
+                        Integer.parseInt( input.get(i).getText());
+                    }catch (Exception ex) {
+                        ero=n[i];
                     }
                 }
                 else if (s.charAt(i)=='d') {
                     try{
-                        int k=j;
-                        String d=inputDate.get(j).getText()+"-"+inputDate.get(++j).getText()+"-"+inputDate.get(++j).getText();
-                        int yyyy=Integer.parseInt(inputDate.get(k).getText());
-                        int mm=Integer.parseInt(inputDate.get(++k).getText());
-                        int dd=Integer.parseInt(inputDate.get(++k).getText());
-                        if (yyyy<year){
-                            error="year of release_date can't be earlier than 'year'";
+                        int test;
+                        test=Integer.parseInt(inputDate.get(j).getText());
+                        if (test<year){
+                            ero=n[i];
                         }
-                        else if(mm<1 || mm>12) error= mm +" is not a correct month";
-                        else if(dd<1 || dd>31) error= dd +" is not a correct day";
-                        input.get(i).setText(d);
-                    }catch (NumberFormatException ex) {
-                        error="release_date is not correct";
+                        input.get(i).setText(inputDate.get(j).getText()+"-"+inputDate.get(++j).getText()+"-"+inputDate.get(++j).getText());
+                    }catch (Exception ex) {
+                        ero=n[i];
                     }
                 }
                 else if (s.charAt(i)=='b'){
-                    hasButtons=true;
-                    buttonIndex=i;
                     if(n[i].replaceAll("\\s+","").equals("colour")){
-                        if(radioButtons.get(0).isSelected()) buttonInput="'C'";
-                        if(radioButtons.get(1).isSelected()) buttonInput="'B/W'";
+                        if(radioButtons.get(0).isSelected()) input.get(i).setText("'C'");
+                        else if(radioButtons.get(1).isSelected()) input.get(i).setText("'B/W'");
                     }
                     if(n[i].replaceAll("\\s+","").equals("value")){
-                        if(radioButtons.get(0).isSelected()) buttonInput="0";
-                        if(radioButtons.get(1).isSelected()) buttonInput="0.5";
-                        if(radioButtons.get(2).isSelected()) buttonInput="1";
-                        if(radioButtons.get(3).isSelected()) buttonInput="1.5";
-                        if(radioButtons.get(4).isSelected()) buttonInput="2";
-                        if(radioButtons.get(5).isSelected()) buttonInput="2.5";
-                        if(radioButtons.get(6).isSelected()) buttonInput="3";
-                        if(radioButtons.get(7).isSelected()) buttonInput="3.5";
-                        if(radioButtons.get(8).isSelected()) buttonInput="4";
-                        if(radioButtons.get(9).isSelected()) buttonInput="4.5";
-                        if(radioButtons.get(10).isSelected()) buttonInput="5";
+                        if(radioButtons.get(0).isSelected()) input.get(i).setText("0");
+                        else if(radioButtons.get(1).isSelected()) input.get(i).setText("0.5");
+                        else if(radioButtons.get(2).isSelected()) input.get(i).setText("1");
+                        else if(radioButtons.get(3).isSelected()) input.get(i).setText("1.5");
+                        else if(radioButtons.get(4).isSelected()) input.get(i).setText("2");
+                        else if(radioButtons.get(5).isSelected()) input.get(i).setText("2.5");
+                        else if(radioButtons.get(6).isSelected()) input.get(i).setText("3");
+                        else if(radioButtons.get(7).isSelected()) input.get(i).setText("3.5");
+                        else if(radioButtons.get(8).isSelected()) input.get(i).setText("4");
+                        else if(radioButtons.get(9).isSelected()) input.get(i).setText("4.5");
+                        else if(radioButtons.get(10).isSelected()) input.get(i).setText("5");
                     }
                 }
             }
-            if (error!=null) {
-                JOptionPane.showMessageDialog(null,"Error: "+error,"Error",JOptionPane.PLAIN_MESSAGE);
+            if (ero!=null) {
+                JOptionPane.showMessageDialog(null,"Error in "+ero,"Error",JOptionPane.PLAIN_MESSAGE);
 
             }else {
                 String[] date;
@@ -237,12 +229,8 @@ public class AddPanel extends JPanel {
                     date = new String[this.input.size()+1];
                     date[0]=toInsert;
                     for(int i=1; i<date.length; i++){
-                        if(i!=buttonIndex){
-                            date[i]=this.input.get(i).getText();
-                        }
-                        else {
-                            date[i]=buttonInput;
-                        }
+
+                        date[i]=this.input.get(i).getText();
                     }
                     String test=Window.getApp().Update(this.title, date);
                     String ok=test.substring(test.length()-3);
@@ -254,14 +242,9 @@ public class AddPanel extends JPanel {
                     }
                 }
                 else {
-                    date = new String[this.input.size()];
+                    date = new String[input.size()];
                     for(int i=0; i<date.length; i++){
-                        if(i!=buttonIndex){
-                            date[i]=this.input.get(i).getText();
-                        }
-                        else {
-                            date[i]=buttonInput;
-                        }
+                            date[i]=input.get(i).getText();
                     }
                     String test=Window.getApp().Update(this.title, date);
                     String ok=test.substring(test.length()-3);

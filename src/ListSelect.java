@@ -28,6 +28,24 @@ public class ListSelect extends JPanel {
 
         in=insert.split(",",-1).length-1;
 
+        if (in>0 && Map[in-1].equals("type")) {
+
+            String test = insert.split(",", -1)[in-1];
+            if (test.equals("1")) {
+
+                Map[in] = "film";
+            } else if (test.equals("2")) {
+
+                Map[in] = "episode";
+            } else if (test.equals("3")) {
+
+                Map[in] = "season";
+            } else if (test.equals("4")) {
+
+                Map[in] = "series";
+            }
+        }
+
         label = new ArrayList();
         buttons=new ArrayList<>();
         bg=new ButtonGroup();
