@@ -214,7 +214,7 @@ public class App {
     }
     public static ArrayList<String> display(ArrayList<String> s){
         if (s.size()==0) return s;
-        int rowSize=s.get(0).split(Pattern.quote("|")).length;
+        int rowSize=s.get(0).split(Pattern.quote("|")).length-1;
         if(rowSize==0) return s;
         int[] max=new int[rowSize];
         for(int i=0; i<rowSize; i++) max[i]=0;

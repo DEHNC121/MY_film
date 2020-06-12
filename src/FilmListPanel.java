@@ -78,7 +78,7 @@ public class FilmListPanel extends JPanel {
             panel.add(label.get(i));
         }
 
-        panel.setPreferredSize(new Dimension(1000,35*s.size()));
+        panel.setPreferredSize(new Dimension(7*ma,35*s.size()));
         JScrollPane scrollPane = new JScrollPane(panel);
 
         scrollPane.setBounds(40, 50, 650, 700);
