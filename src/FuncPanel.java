@@ -26,8 +26,8 @@ public class FuncPanel extends JPanel{
         JButton button =new JButton("Submit");
         button.setBounds((400-120)/2,100,120,50);
         ActionListener le=(ActionEvent e) ->{
-            if(type=='s') new Window(600,400, new JScrollPane(new FilmListPanel(funcName+"('"+input.getText()+"');")),t);
-            if(type=='i') new Window(600,400, new JScrollPane(new FilmListPanel(funcName+"("+input.getText()+");")),t);
+            if(type=='s') new Window(600,400, new JScrollPane(new FilmListPanel(funcName,funcName+"('"+input.getText()+"');")),t);
+            if(type=='i') new Window(600,400, new JScrollPane(new FilmListPanel(funcName,funcName+"("+input.getText()+");")),t);
         };
         button.addActionListener(le);
         add(button);

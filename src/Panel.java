@@ -69,16 +69,16 @@ public class Panel extends JPanel {
         ActionListener le = (ActionEvent e) -> {
             if  (s1.equals("All"))
             {
-                new Window(750,800, new JScrollPane(new FilmListPanel("all_content_names")),"List of films");
+                new Window(750,800, new JScrollPane(new FilmListPanel("all_content_names","")),"List of films");
             }else if (s1.equals("Rating")){
-                new Window(750,800, new JScrollPane(new FilmListPanel("all_ratings")),"List of films");
+                new Window(750,800, new JScrollPane(new FilmListPanel("all_ratings","")),"List of films");
 
             }else if (s1.equals("Rating films")){
-                new Window(750,800, new JScrollPane(new FilmListPanel("film_ratings")),"List of films");
+                new Window(750,800, new JScrollPane(new FilmListPanel("film_ratings","")),"List of films");
 
             }else if (s1.equals("Rating series")){
 
-                new Window(750,800, new JScrollPane(new FilmListPanel("series_ratings")),"List of films");
+                new Window(750,800, new JScrollPane(new FilmListPanel("series_ratings","")),"List of films");
 
             }else
             new Window(435, 115, new APanel(s1), s1);

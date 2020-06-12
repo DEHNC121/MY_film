@@ -12,7 +12,7 @@ public class FilmListPanel extends JPanel {
 
     private Font fontTitel = new Font("SanSerif",Font.BOLD,20);
     private String title;
-    public FilmListPanel(String t){
+    public FilmListPanel(String t,String func){
         setLayout(null);
         try{
             InputStream myStream = this.getClass().getResourceAsStream("res/consola.ttf");
@@ -53,9 +53,16 @@ public class FilmListPanel extends JPanel {
                 t2+=n[i++]+" | ";
             }
         }
-
+        ArrayList<String> temp;
         int max=t2.length();
-        ArrayList<String> temp=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+title+";"));
+        if (func.equals(""))
+        {
+
+            temp=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+title+";"));
+        }
+        else
+            temp=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+func+";"));
+
         temp.add(t2);
         ArrayList<String> s=App.display(temp);
         int ma=0;

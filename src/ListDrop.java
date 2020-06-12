@@ -29,8 +29,6 @@ public class ListDrop extends JPanel {
         title = selectFrom.toLowerCase();
 
 
-
-
         label = new ArrayList();
         buttons=new ArrayList<>();
         bg=new ButtonGroup();
@@ -98,10 +96,20 @@ public class ListDrop extends JPanel {
 
                 for(int i=0; i<buttons.size(); i++){
                     if(buttons.get(i).isSelected()){
-                        Window.getApp().Delete(title,label.get(i).getText().split(Pattern.quote(" | ")));
+                         if (Window.getApp().Delete(title,label.get(i).getText().split(Pattern.quote(" | "))))
+                         {
+                             JOptionPane.showMessageDialog(null,
+                                     "Delete success !","Dane",JOptionPane.PLAIN_MESSAGE);
+
+                         }else
+                             {
+                                 JOptionPane.showMessageDialog(null,
+                                         "Delete error !","Error",JOptionPane.PLAIN_MESSAGE);
+                             };
                     }
                 }
                 System.out.println("OK2");
+
                 Window.Off();
 
 
