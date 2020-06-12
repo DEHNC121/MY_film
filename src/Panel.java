@@ -46,8 +46,8 @@ public class Panel extends JPanel {
         addFuncButton("season by name","find_season",'s',"Give actors name and get seasons titles");
         addFuncButton("episode by name","find_episode",'s',"Give actors name and get episodes titles");
 
-        addFuncButton("characters played by","characters_played",'s',"");
-        addFuncButton("films by year","films_from",'s',"");
+        addFuncButton("characters played by","characters_played",'s',"Give actors name and get characters that they played");
+        addFuncButton("films by year","films_from",'s',"Give year and get films produced that time");
     }
 
     public int addFuncButton(String t, String f, char type, String s){
