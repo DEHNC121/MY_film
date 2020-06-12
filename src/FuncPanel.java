@@ -17,11 +17,11 @@ public class FuncPanel extends JPanel{
         Title.setFont(font);
         add(Title);
         JLabel desc=new JLabel(description);
-        desc.setBounds((int)(200-t.length()*4.5),40,300,25);
+        desc.setBounds((int)(200-description.length()*2.5),40,300,25);
         desc.setFont(font.deriveFont(Font.PLAIN,12));
         add(desc);
         input=new JTextField();
-        input.setBounds((400-120)/2,80,120,25);
+        input.setBounds((400-160)/2,70,160,25);
         add(input);
         JButton button =new JButton("Submit");
         button.setBounds((400-120)/2,100,120,50);

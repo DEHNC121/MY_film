@@ -173,7 +173,7 @@ public class ListSelect extends JPanel {
             buttons.get(0).setSelected(true);
 
             JButton button =new JButton("Next");
-            button.setBounds(100,600,120,50);
+            button.setBounds(400,600,120,50);
 
             ActionListener le=(ActionEvent e) ->{
                 for(int i=0; i<buttons.size(); i++){

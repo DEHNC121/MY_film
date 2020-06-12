@@ -117,10 +117,10 @@ public class App {
     public Map<String, String> getOpen() {
         return open;
     }
-
+    String insert;
     public boolean Delete(String s, String[] args) {
         try {
-            String insert="DELETE FROM "+s+" WHERE ";
+            insert="DELETE FROM "+s+" WHERE ";
             if (colTypes.get(s+",id")!=null)
             {
                 insert+="id="+args[0];
@@ -146,7 +146,7 @@ public class App {
             statement.executeUpdate(insert);
             return true;
         } catch (SQLException e) {
-            System.out.print(e);
+            System.out.print(insert+"\n"+e);
             return false;
         }
     }
