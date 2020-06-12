@@ -8,9 +8,10 @@ public class APanel extends JPanel {
     int j=0;
     public APanel(String title) {
         setLayout(null);
-        button = new JButton[2];
+        button = new JButton[3];
         addButoon("See", title);
         addButoon("New", title);
+        addButoon("Delete", title);
     }
 
     public void addButoon(String s,String title) {
@@ -23,7 +24,8 @@ public class APanel extends JPanel {
             };
             button[j].addActionListener(le);
             add(button[j]);
-        }else {
+        }
+        else if (s.equals("New")) {
             button[j] = new JButton(s);
             button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
             ActionListener le = (ActionEvent e) -> {
@@ -32,12 +34,25 @@ public class APanel extends JPanel {
                 {
                     new Window(350, 400, new AddPanel(title,""), s);
                 }else
-                    {
-                        ListSelect p=new ListSelect(title,"");
+                {
+                    ListSelect p=new ListSelect(title,"");
 
-                        if (p.done)
-                        new Window(600, 800,p, s);
-                    }
+                    if (p.done)
+                        new Window(600, 720,p, s);
+                }
+            };
+            button[j].addActionListener(le);
+            add(button[j]);
+        }
+        else if (s.equals("Delete")) {
+            button[j] = new JButton(s);
+            button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
+            ActionListener le = (ActionEvent e) -> {
+                Window.Off();
+                ListDrop p = new ListDrop(title);
+
+                if (p.done)
+                    new Window(600, 720, p, s);
             };
             button[j].addActionListener(le);
             add(button[j]);

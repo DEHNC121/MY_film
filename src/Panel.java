@@ -81,7 +81,7 @@ public class Panel extends JPanel {
                 new Window(600,800, new JScrollPane(new FilmListPanel("series_ratings")),"List of films");
 
             }else
-            new Window(300, 115, new APanel(s1), s1);
+            new Window(435, 115, new APanel(s1), s1);
         };
         button[j].addActionListener(le);
         add(button[j]);

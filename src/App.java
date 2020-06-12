@@ -79,7 +79,7 @@ public class App {
         colTypes.put("film_ratings","name,rating");
         colTypes.put("series_ratings","name,rating");
 
-        new Window(680,600,this);
+        new Window(680,550,this);
     }
     public Connection connect() {
         Connection conn = null;
@@ -105,6 +105,7 @@ public class App {
         return statement;
     }
 
+
     public Map<String, String> getTypes() {
         return types;
     }
@@ -115,6 +116,25 @@ public class App {
 
     public Map<String, String> getOpen() {
         return open;
+    }
+
+    public boolean Delete(String s, String[] args) {
+        try {
+            String insert="DELETE FROM "+s+" WHERE ";
+            if (colTypes.get(s+",id")!=null)
+            {
+                insert+="id="+args[0];
+            }else
+                {
+
+                }
+            insert+=";";
+            statement.executeUpdate(insert);
+            return true;
+        } catch (SQLException e) {
+            System.out.print(e);
+            return false;
+        }
     }
 
     public String Update(String s, String[] args) {
@@ -187,15 +207,14 @@ public class App {
         for(String row: s){
             String[] tab=row.split(Pattern.quote("|"));
             for(int i=0; i<rowSize; i++){
-                if(tab[i].length()>max[i]) {max[i]=tab[i].length(); System.out.println(max[i]);}
+                if(tab[i].length()>max[i]) {max[i]=tab[i].length(); }
             }
-            System.out.println();
         }
         ArrayList<String> formatted=new ArrayList<>();
         for(String row: s){
             StringBuilder sb=new StringBuilder();
             String[] tab=row.split(Pattern.quote("|"));
-            for(int i=0; i<rowSize; i++){ sb.append(fill(tab[i],max[i]+2)); System.out.println(max[i]);}
+            for(int i=0; i<rowSize; i++){ sb.append(fill(tab[i],max[i]+2)); }
             formatted.add(sb.toString());
         }
         return formatted;
@@ -209,9 +228,6 @@ public class App {
         return sb.toString();
     }
     public static void main(String[] args) {
-        System.out.println("ppp1:"+" a".length());
-        System.out.println("ppp2:"+"  ".length());
-        System.out.println("ppp3:"+"   ".length());
         App app = new App();
     }
 }

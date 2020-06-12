@@ -13,6 +13,7 @@ public class ListSelect extends JPanel {
     private String title;
     private String insert;
     private boolean go=false;
+    private boolean go1=false;
 
     public boolean done=true;
 
@@ -34,7 +35,7 @@ public class ListSelect extends JPanel {
         in=insert.split(",",-1).length-1;
 
 
-        if (in>0 && Map[in-1].equals("type")) {
+        if (in==1 && Map[in-1].equals("type")) {
 
             String test = insert.split(",", -1)[in-1];
             if (test.equals("1")) {
@@ -44,32 +45,36 @@ public class ListSelect extends JPanel {
 
                 //Map[in] = "episode";
                 Map[in] = "series";
+
+                go1=true;
             } else if (test.equals("3")) {
 
                 //Map[in] = "season";
                 Map[in] = "series";
+
+                go1=true;
             } else if (test.equals("4")) {
 
                 Map[in] = "series";
             }
         }
-        else if (in>1 && Map[in-2].equals("type")) {
+        else if (in==2 && insert.split(",", -1)[in-2].equals("2a")) {
+            Map[in] = "episode";
+            go=true;
+        }
+        else if (in==2 && Map[in-2].equals("type")) {
 
             String test = insert.split(",", -1)[in-2];
-            if (test.equals("2")) {
-
-                Map[in] = "season";
-
-                go=true;
-            }
-            else if (test.equals("3")) {
+            if (test.equals("2b")) {
 
                 Map[in] = "season";
                 go=true;
             }
-        }else if (in>1 && Map[in-2].equals("type") && title.equals("episode")) {
-                Map[in] = "episode";
-            go=true;
+            else if (test.equals("3b")) {
+
+                Map[in] = "season";
+                go=true;
+            }
         }
 
         label = new ArrayList();
@@ -116,6 +121,26 @@ public class ListSelect extends JPanel {
 
                 s=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+Map[in]+";"));
             }
+
+        if (in==2 && insert.split(",", -1)[in-2].equals("2a")) {
+            s=Window.getApp().Print(Window.getApp().Select(
+                    "SELECT * FROM "+Map[in]+" WHERE season_id="+insert.split(",")[in-1]+";"));
+        }
+        else if (in==2 && Map[in-2].equals("type")) {
+
+            String test = insert.split(",", -1)[in-2];
+            if (test.equals("2b")) {
+
+                s=Window.getApp().Print(Window.getApp().Select(
+                        "SELECT * FROM "+Map[in]+" WHERE series_id="+insert.split(",")[in-1]+";"));
+            }
+            else if (test.equals("3b")) {
+
+                s=Window.getApp().Print(Window.getApp().Select(
+                        "SELECT * FROM "+Map[in]+" WHERE series_id="+insert.split(",")[in-1]+";"));
+            }
+        }
+
 
         if (s.size()==0)
         {
@@ -165,9 +190,33 @@ public class ListSelect extends JPanel {
                                     {
                                         add+=label.get(i).getText().split(Pattern.quote(" | "))[0]+",";
                                     }else
-                                    add+=insert.split(",")[i1];
+                                        {
+                                            if (in==2 &&i1==0&& insert.split(",", -1)[in-2].equals("2b"))
+                                            add+="2a,";
+                                            else if(in==2 &&i1==0
+                                                    && insert.split(",", -1)[in-2].substring(insert.split(",", -1)[in-2].length()-1).equals("a"))
+                                                add+=insert.split(",")[i1].substring(0,insert.split(",")[i1].length()-1)+",";
+                                            else if (in==2 &&i1==0&& insert.split(",", -1)[in-2].equals("3b"))
+                                                add+="3,";
+                                            else
+                                            add+=insert.split(",")[i1];
+                                        }
                                 }
                                 insert=add;
+                            }
+                            else if (go1)
+                            {
+                                String add="";
+                                int te=insert.split(",").length;
+                                for(int i1=0; i1<te; i1++) {
+                                    if (i1 == 0)
+                                    {
+                                        add += insert.split(",")[i1] + "b,";
+                                    }
+                                    else
+                                        add += insert.split(",")[i1];
+                                }
+                                insert=add+label.get(i).getText().split(Pattern.quote(" | "))[0]+",";
                             }else
                             insert+=label.get(i).getText().split(Pattern.quote(" | "))[0]+",";
                         }
@@ -182,8 +231,9 @@ public class ListSelect extends JPanel {
                     {
                         ListSelect p=new ListSelect(title,insert);
 
+
                         if (p.done)
-                        new Window(600, 800, p, "New");
+                        new Window(600, 720, p, "New");
                     }
 
                 };
