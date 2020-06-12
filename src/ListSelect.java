@@ -40,7 +40,7 @@ public class ListSelect extends JPanel {
         in=insert.split(",",-1).length-1;
 
         try{
-            InputStream myStream = new BufferedInputStream(new FileInputStream("res/consola.ttf"));
+            InputStream myStream = new BufferedInputStream((new FileInputStream("res/consola.ttf")));
             font = Font.createFont(Font.TRUETYPE_FONT, myStream);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);

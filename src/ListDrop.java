@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -19,7 +22,6 @@ public class ListDrop extends JPanel {
     int in;
 
 
-
     public ListDrop(String selectFrom) {
         setLayout(null);
 
@@ -27,7 +29,16 @@ public class ListDrop extends JPanel {
         panel.setLayout(null);
 
         title = selectFrom.toLowerCase();
-
+        try{
+            InputStream myStream = new BufferedInputStream((new FileInputStream("res/consola.ttf")));
+            font = Font.createFont(Font.TRUETYPE_FONT, myStream);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
+            font = font.deriveFont(Font.PLAIN, 12);
+        } catch (Exception e){
+            System.out.println("FONT ERROR");
+            font=new Font("SanSerif",Font.PLAIN,12);
+        }
 
         label = new ArrayList();
         buttons=new ArrayList<>();
@@ -55,16 +66,12 @@ public class ListDrop extends JPanel {
         add(Title);
         panel.setLayout(null);
 
-
-        JLabel labelT=new JLabel(nameTables);
-        labelT.setBounds(10, 10 , 3000, 25);
-        panel.add(labelT);
         int max=nameTables.length();
 
         ArrayList<String> s;
 
         s=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+title+";"));
-
+        s.add(nameTables);
 
         if (s.size()==0) {
 
@@ -75,15 +82,21 @@ public class ListDrop extends JPanel {
         }
         else
         {
-            for (int i = 0; i < s.size(); i++) {
+            ArrayList<String> out=App.display(s);
+            JLabel labelT=new JLabel(out.get(out.size()-1));
+            labelT.setBounds(10, 10 , 3000, 25);
+            labelT.setFont(font);
+            panel.add(labelT);
+            for (int i = 0; i < out.size(); i++) {
                 buttons.add(new JRadioButton());
                 buttons.get(i).setBounds(10, 10 + 35 * i+35, 25, 25);
                 panel.add(buttons.get(i));
                 bg.add(buttons.get(i));
 
-                label.add(new JLabel(s.get(i)));
-                if (s.get(i).length()>max) max=s.get(i).length();
+                label.add(new JLabel(out.get(i)));
+                if (out.get(i).length()>max) max=out.get(i).length();
                 label.get(i).setBounds(40, 10 + 35 * i+35, 3000, 25);
+                label.get(i).setFont(font);
                 panel.add(label.get(i));
             }
 
