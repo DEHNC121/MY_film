@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
+
 public class App {
     private Map<String, String> types;
     private Map<String, String> colTypes;
@@ -175,6 +177,36 @@ public class App {
             System.out.println(e.getMessage());
         }
         return s;
+    }
+    public static ArrayList<String> display(ArrayList<String> s){
+        if (s.size()==0) return s;
+        int rowSize=s.get(0).split(Pattern.quote("|")).length;
+        if(rowSize==0) return s;
+        int[] max=new int[rowSize];
+        for(int i=0; i<rowSize; i++) max[i]=0;
+        for(String row: s){
+            String[] tab=row.split(Pattern.quote("|"));
+            for(int i=0; i<rowSize; i++){
+                if(tab[i].length()>max[i]) {max[i]=tab[i].length(); System.out.println(max[i]);}
+            }
+            System.out.println();
+        }
+        ArrayList<String> formatted=new ArrayList<>();
+        for(String row: s){
+            StringBuilder sb=new StringBuilder();
+            String[] tab=row.split(Pattern.quote("|"));
+            for(int i=0; i<rowSize; i++){ sb.append(fill(tab[i],max[i]+2)); System.out.println(max[i]);}
+            formatted.add(sb.toString());
+        }
+        return formatted;
+    }
+    public static String fill(String s, int length){
+        StringBuilder sb=new StringBuilder();
+        sb.append(s);
+        while(sb.toString().length()<=length) sb.append(" ");
+        sb.append("|");
+        System.out.println(sb.toString());
+        return sb.toString();
     }
     public static void main(String[] args) {
         App app = new App();
