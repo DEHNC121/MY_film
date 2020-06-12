@@ -33,7 +33,10 @@ public class APanel extends JPanel {
                     new Window(350, 400, new AddPanel(title,""), s);
                 }else
                     {
-                        new Window(600, 800, new ListSelect(title,""), s);
+                        ListSelect p=new ListSelect(title,"");
+
+                        if (p.done)
+                        new Window(600, 800,p, s);
                     }
             };
             button[j].addActionListener(le);
