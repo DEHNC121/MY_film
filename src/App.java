@@ -57,7 +57,7 @@ public class App {
         colTypes.put("type","type,name");
         colTypes.put("episode,id","name,description, length,number,season_id,colour");
         colTypes.put("series,id","name,description,year,release_date,seasons");
-        colTypes.put("season,id","series_id,name,description,year,release_date,seasons");
+        colTypes.put("season,id","series_id,name,description,year,release_date,episodes_number");
         colTypes.put("member,id","name,sex");
         colTypes.put("team","film_id,type,member_id,position");
         colTypes.put("character","film_id,type,member_id,name");
@@ -126,6 +126,20 @@ public class App {
                 insert+="id="+args[0];
             }else
                 {
+                    String[] tab=colTypes.get(s).split(",");
+
+                    for (int i=0;i<tab.length;i++)
+                    {
+                        if (i+1!=tab.length)
+                        {
+                            insert+= tab[i]+"="+args[i]+" and";
+                        }
+                        else
+                            {
+                                insert+= tab[i]+"="+args[i];
+                        }
+                    }
+
 
                 }
             insert+=";";

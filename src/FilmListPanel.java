@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class FilmListPanel extends JPanel {
     private ArrayList<JLabel>  label;
     private Font font;
+
+    private Font fontTitel = new Font("SanSerif",Font.BOLD,20);
     private String title;
     public FilmListPanel(String t){
         setLayout(null);
@@ -31,7 +33,7 @@ public class FilmListPanel extends JPanel {
 
         JLabel Title = new JLabel(title);
         Title.setBounds(50, 10, 500, 40);
-        Title.setFont(font);
+        Title.setFont(fontTitel);
         add(Title);
         panel.setLayout(null);
 

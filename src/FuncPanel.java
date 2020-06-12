@@ -9,7 +9,7 @@ public class FuncPanel extends JPanel{
     private JLabel label;
     private Font font = new Font("SanSerif",Font.BOLD,20);
 
-    public FuncPanel(String t, String funcName, char type){
+    public FuncPanel(String t, String funcName, char type,String description){
         setLayout(null);
 
         JLabel Title=new JLabel(t);
