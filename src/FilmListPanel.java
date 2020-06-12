@@ -19,13 +19,10 @@ public class FilmListPanel extends JPanel {
             font = Font.createFont(Font.TRUETYPE_FONT, myStream);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);
-            font = font.deriveFont(Font.PLAIN, 10);
+            font = font.deriveFont(Font.PLAIN, 12);
         } catch (Exception e){
-
             System.out.println("FONT ERROR");
-            System.out.println(e);
-            System.out.println("-------------------");
-            font=new Font("SanSerif",Font.PLAIN,20);
+            font=new Font("SanSerif",Font.PLAIN,12);
         }
         JPanel panel=new JPanel();
         panel.setLayout(null);
@@ -56,13 +53,16 @@ public class FilmListPanel extends JPanel {
                 t2+=n[i++]+" | ";
             }
         }
+
         int max=t2.length();
         ArrayList<String> temp=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+title+";"));
         temp.add(t2);
         ArrayList<String> s=App.display(temp);
         JLabel titleLabel=new JLabel(s.get(s.size()-1));
         titleLabel.setBounds(10, 10, 3000, 25);
+        titleLabel.setFont(font);
         panel.add(titleLabel);
+
         for (int i = 0; i < s.size()-1; i++) {
             label.add(new JLabel(s.get(i)));
             if (s.get(i).length()>max) max=s.get(i).length();
@@ -71,10 +71,10 @@ public class FilmListPanel extends JPanel {
             panel.add(label.get(i));
         }
 
-        panel.setPreferredSize(new Dimension(max*6,35*s.size()));
+        panel.setPreferredSize(new Dimension(1000,35*s.size()));
         JScrollPane scrollPane = new JScrollPane(panel);
 
-        scrollPane.setBounds(50, 50, 500, 700);
+        scrollPane.setBounds(50, 50, 900, 600);
 
         add(scrollPane);
     }

@@ -20,7 +20,7 @@ public class APanel extends JPanel {
             button[j].setBounds(15 + 135 * (j % 4), 12 + 62 * (j / 4), 120, 50);
             ActionListener le = (ActionEvent e) -> {
                 Window.Off();
-                new Window(600, 800, new FilmListPanel(title), s);
+                new Window(1000, 700, new FilmListPanel(title), s);
             };
             button[j].addActionListener(le);
             add(button[j]);

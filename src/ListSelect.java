@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -9,7 +12,7 @@ public class ListSelect extends JPanel {
     private ArrayList<JLabel>  label;
     private ArrayList<JRadioButton> buttons;
     private ButtonGroup bg;
-    private Font font = new Font("SanSerif",Font.BOLD,20);
+    private Font font;
     private String title;
     private String insert;
     private boolean go=false;
@@ -34,6 +37,16 @@ public class ListSelect extends JPanel {
 
         in=insert.split(",",-1).length-1;
 
+        try{
+            InputStream myStream = new BufferedInputStream(new FileInputStream("res/consola.ttf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, myStream);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
+            font = font.deriveFont(Font.PLAIN, 12);
+        } catch (Exception e){
+            System.out.println("FONT ERROR");
+            font=new Font("SanSerif",Font.PLAIN,12);
+        }
 
         if (in==1 && Map[in-1].equals("type")) {
 
@@ -110,66 +123,53 @@ public class ListSelect extends JPanel {
         int max=nameTables.length();
 
         ArrayList<String> s;
-        if (in>0 && Map[in-1].equals("series"))
-        {
-
+        if (in>0 && Map[in-1].equals("series")) {
            s=Window.getApp().Print(Window.getApp().Select(
                     "SELECT * FROM "+Map[in]+" WHERE series_id="+insert.split(",")[in-1]+";"));
         }
-        else
-            {
-
-                s=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+Map[in]+";"));
-            }
-
+        else {
+            s=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+Map[in]+";"));
+        }
         if (in==2 && insert.split(",", -1)[in-2].equals("2a")) {
             s=Window.getApp().Print(Window.getApp().Select(
                     "SELECT * FROM "+Map[in]+" WHERE season_id="+insert.split(",")[in-1]+";"));
         }
         else if (in==2 && Map[in-2].equals("type")) {
-
             String test = insert.split(",", -1)[in-2];
             if (test.equals("2b")) {
-
                 s=Window.getApp().Print(Window.getApp().Select(
                         "SELECT * FROM "+Map[in]+" WHERE series_id="+insert.split(",")[in-1]+";"));
             }
             else if (test.equals("3b")) {
-
                 s=Window.getApp().Print(Window.getApp().Select(
                         "SELECT * FROM "+Map[in]+" WHERE series_id="+insert.split(",")[in-1]+";"));
             }
         }
 
-
-        if (s.size()==0)
-        {
-
+        if (s.size()==0) {
                 if(in>0){
                     JOptionPane.showMessageDialog(null,
                             "You can't add new "+title+" because there is no "+Map[in]+ " for this " +Map[in-1],"Error",JOptionPane.PLAIN_MESSAGE);
-
                 }
                 else{
                     JOptionPane.showMessageDialog(null,
                             "You can't add new "+title+" because there is no "+Map[in]+ " for this " +title,"Error",JOptionPane.PLAIN_MESSAGE);
-
                 }
                 done=false;
         }
-        else
-            {
-                for (int i = 0; i < s.size(); i++) {
-                    buttons.add(new JRadioButton());
-                    buttons.get(i).setBounds(10, 10 + 35 * i+35, 25, 25);
-                    panel.add(buttons.get(i));
-                    bg.add(buttons.get(i));
+        else {
+            for (int i = 0; i < s.size(); i++) {
+                buttons.add(new JRadioButton());
+                buttons.get(i).setBounds(10, 10 + 35 * i+35, 25, 25);
+                panel.add(buttons.get(i));
+                bg.add(buttons.get(i));
 
-                    label.add(new JLabel(s.get(i)));
-                    if (s.get(i).length()>max) max=s.get(i).length();
-                    label.get(i).setBounds(40, 10 + 35 * i+35, 3000, 25);
-                    panel.add(label.get(i));
-                }
+                label.add(new JLabel(s.get(i)));
+                if (s.get(i).length()>max) max=s.get(i).length();
+                label.get(i).setBounds(40, 10 + 35 * i+35, 3000, 25);
+                label.get(i).setFont(font);
+                panel.add(label.get(i));
+            }
 
                 buttons.get(0).setSelected(true);
 
@@ -233,7 +233,7 @@ public class ListSelect extends JPanel {
 
 
                         if (p.done)
-                        new Window(600, 720, p, "New");
+                        new Window(800, 700, p, "New");
                     }
 
                 };
