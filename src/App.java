@@ -209,6 +209,9 @@ public class App {
         return sb.toString();
     }
     public static void main(String[] args) {
+        System.out.println("ppp1:"+" a".length());
+        System.out.println("ppp2:"+"  ".length());
+        System.out.println("ppp3:"+"   ".length());
         App app = new App();
     }
 }

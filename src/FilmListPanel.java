@@ -1,16 +1,30 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class FilmListPanel extends JPanel {
     private ArrayList<JLabel>  label;
-    private Font font = new Font("SanSerif",Font.BOLD,25);
+    private Font font;
     private String title;
-    public FilmListPanel(String t) {
+    public FilmListPanel(String t){
         setLayout(null);
+        try{
+            InputStream myStream = new BufferedInputStream(new FileInputStream("res/consola.ttf"));
+            font = Font.createFont(Font.TRUETYPE_FONT, myStream);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
+            font = font.deriveFont(Font.PLAIN, 10);
+        } catch (Exception e){
 
-
+            System.out.println("FONT ERROR");
+            System.out.println(e);
+            System.out.println("-------------------");
+            font=new Font("SanSerif",Font.PLAIN,20);
+        }
         JPanel panel=new JPanel();
         panel.setLayout(null);
         title = t.toLowerCase();
@@ -51,6 +65,7 @@ public class FilmListPanel extends JPanel {
             label.add(new JLabel(s.get(i)));
             if (s.get(i).length()>max) max=s.get(i).length();
             label.get(i).setBounds(10, 10 + 35 * i+35, 3000, 25);
+            label.get(i).setFont(font);
             panel.add(label.get(i));
         }
 
