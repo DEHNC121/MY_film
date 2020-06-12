@@ -13,11 +13,11 @@ public class FuncPanel extends JPanel{
         setLayout(null);
 
         JLabel Title=new JLabel(t);
-        Title.setBounds(110,10,250,25);
+        Title.setBounds((int)(200-t.length()*4.5),10,250,25);
         Title.setFont(font);
         add(Title);
         JLabel desc=new JLabel(description);
-        desc.setBounds(50,40,3000,25);
+        desc.setBounds((int)(200-t.length()*4.5),40,300,25);
         desc.setFont(font.deriveFont(Font.PLAIN,12));
         add(desc);
         input=new JTextField();
