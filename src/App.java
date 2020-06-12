@@ -142,7 +142,7 @@ public class App {
 
 
                 }
-            insert+=";";
+            insert+=" CASCADE;";
             statement.executeUpdate(insert);
             return true;
         } catch (SQLException e) {

@@ -58,6 +58,13 @@ public class FilmListPanel extends JPanel {
         ArrayList<String> temp=Window.getApp().Print(Window.getApp().Select("SELECT * FROM "+title+";"));
         temp.add(t2);
         ArrayList<String> s=App.display(temp);
+        int ma=0;
+        for (String te:s) {
+            if (ma < te.length()) {
+                ma=te.length();
+
+            }
+        }
         JLabel titleLabel=new JLabel(s.get(s.size()-1));
         titleLabel.setBounds(10, 10, 3000, 25);
         titleLabel.setFont(font);
@@ -74,7 +81,7 @@ public class FilmListPanel extends JPanel {
         panel.setPreferredSize(new Dimension(1000,35*s.size()));
         JScrollPane scrollPane = new JScrollPane(panel);
 
-        scrollPane.setBounds(50, 50, 900, 600);
+        scrollPane.setBounds(40, 50, 650, 700);
 
         add(scrollPane);
     }
