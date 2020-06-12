@@ -22,8 +22,6 @@ public class ListSelect extends JPanel {
 
     int in;
 
-
-
     public ListSelect(String selectFrom, String insertInto) {
         setLayout(null);
 
@@ -116,12 +114,6 @@ public class ListSelect extends JPanel {
         add(Title);
         panel.setLayout(null);
 
-
-        JLabel labelT=new JLabel(nameTables);
-        labelT.setBounds(10, 10 , 3000, 25);
-        panel.add(labelT);
-        int max=nameTables.length();
-
         ArrayList<String> s;
         if (in>0 && Map[in-1].equals("series")) {
            s=Window.getApp().Print(Window.getApp().Select(
@@ -158,18 +150,28 @@ public class ListSelect extends JPanel {
                 done=false;
         }
         else {
-            for (int i = 0; i < s.size(); i++) {
+            s.add(nameTables);
+            ArrayList<String> out=App.display(s);
+
+            int max=nameTables.length();
+
+            for (int i = 0; i < out.size()-1; i++) {
                 buttons.add(new JRadioButton());
                 buttons.get(i).setBounds(10, 10 + 35 * i+35, 25, 25);
                 panel.add(buttons.get(i));
                 bg.add(buttons.get(i));
 
-                label.add(new JLabel(s.get(i)));
-                if (s.get(i).length()>max) max=s.get(i).length();
+                label.add(new JLabel(out.get(i)));
+                if (out.get(i).length()>max) max=out.get(i).length();
                 label.get(i).setBounds(40, 10 + 35 * i+35, 3000, 25);
                 label.get(i).setFont(font);
                 panel.add(label.get(i));
             }
+            JLabel labelT=new JLabel(out.get(out.size()-1));
+            labelT.setBounds(40, 10 , 3000, 25);
+            labelT.setFont(font);
+            panel.add(labelT);
+
             buttons.get(0).setSelected(true);
 
             JButton button =new JButton("Next");
@@ -215,29 +217,21 @@ public class ListSelect extends JPanel {
                     System.out.println("OK1");
                     Window.Off();
 
-                    if (insert.split(",",-1).length-1==Map.length)
-                    {
+                    if (insert.split(",",-1).length-1==Map.length) {
                         new Window(350, 400, new AddPanel(title,insert), "New");
-                    }else
-                    {
+                    }else {
                         ListSelect p=new ListSelect(title,insert);
 
 
-                        if (p.done)
-                        new Window(800, 700, p, "New");
+                        if (p.done) new Window(800, 700, p, "New");
                     }
-
-                };
-
-                button.addActionListener(le);
-                add(button);
-            }
-
-        panel.setPreferredSize(new Dimension(max*6+20,35*s.size()));
-        JScrollPane scrollPane = new JScrollPane(panel);
-        scrollPane.setBounds(50, 50, 500, 500);
-        add(scrollPane);
-
-
+            };
+            button.addActionListener(le);
+            add(button);
+            panel.setPreferredSize(new Dimension(max*6+20,35*s.size()));
+            JScrollPane scrollPane = new JScrollPane(panel);
+            scrollPane.setBounds(50, 50, 500, 500);
+            add(scrollPane);
+        }
     }
 }
