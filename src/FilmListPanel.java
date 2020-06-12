@@ -15,7 +15,8 @@ public class FilmListPanel extends JPanel {
     public FilmListPanel(String t,String func){
         setLayout(null);
         try{
-            InputStream myStream = new BufferedInputStream((new FileInputStream("res/consola.ttf")));
+
+            InputStream myStream = getClass().getResourceAsStream("consola.ttf");
             font = Font.createFont(Font.TRUETYPE_FONT, myStream);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);

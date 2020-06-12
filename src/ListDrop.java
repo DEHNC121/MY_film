@@ -30,7 +30,7 @@ public class ListDrop extends JPanel {
 
         title = selectFrom.toLowerCase();
         try{
-            InputStream myStream = new BufferedInputStream((new FileInputStream("res/consola.ttf")));
+            InputStream myStream = getClass().getResourceAsStream("consola.ttf");;
             font = Font.createFont(Font.TRUETYPE_FONT, myStream);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);
