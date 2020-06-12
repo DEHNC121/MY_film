@@ -144,7 +144,13 @@ public class AddPanel extends JPanel {
                 add(input.get(i));
             }
             if(!n[i].equals("release_date")) label.add(new JLabel(n[i]+":"));
-            else label.add(new JLabel(n[i]+" [yyyy-mm-dd]:"));
+            else
+                {
+                    label.add(new JLabel(n[i]+":"));
+                    JLabel L=new JLabel("[yyyy-mm-dd]");
+                    L.setBounds(12,22+35*i+40,180,25);
+                    add(L);
+                }
             label.get(i).setBounds(10,10+35*i+40,180,25);
             label.get(i).setFont(Window.Sfont);
             add(label.get(i));

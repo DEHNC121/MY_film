@@ -45,7 +45,7 @@ public class App {
         types.put("mark","iibis");
         types.put("language","s");
         types.put("film_language","iisis");
-        types.put("studio","sis");
+        types.put("studio","si");
         types.put("film_studio","iii");
         types.put("country","s");
         types.put("film_country","iii");
@@ -67,7 +67,7 @@ public class App {
         colTypes.put("mark,id","film_id,type,value,user_id,description");
         colTypes.put("language,id","language");
         colTypes.put("film_language","film_id,type,is_silent,language_id,form");
-        colTypes.put("studio,id","name,establishment_year,is_active");
+        colTypes.put("studio,id","name,establishment_year");
         colTypes.put("film_studio","film_id,type,studio_id");
         colTypes.put("country,id","country");
         colTypes.put("film_country","film_id,type,country_id");
