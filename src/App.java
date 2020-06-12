@@ -79,6 +79,17 @@ public class App {
         colTypes.put("film_ratings","name,rating");
         colTypes.put("series_ratings","name,rating");
 
+        colTypes.put("user_ratings","name,value");
+        colTypes.put("film_actors","actor,character_name");
+        colTypes.put("series_actors","actor,character_name");
+        colTypes.put("find_film","id,name,description,year,release_date,length,colour");
+        colTypes.put("find_series","id,name,description,year,release_date,seasons");
+        colTypes.put("find_season","id,series_id,name,description,year,release_date,episodes_number");
+        colTypes.put("find_episode","id,name,description, length,number,season_id,colour\"");
+
+        colTypes.put("characters_played","character");
+        colTypes.put("films_from","id,name,description,year,release_date,length,colour");
+
         new Window(680,550,this);
     }
     public Connection connect() {
@@ -238,7 +249,6 @@ public class App {
         sb.append(s);
         while(sb.toString().length()<=length) sb.append(" ");
         sb.append("|");
-        System.out.println(sb.toString());
         return sb.toString();
     }
     public static void main(String[] args) {

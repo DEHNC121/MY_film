@@ -13,6 +13,10 @@ public class ListSelect extends JPanel {
     private ArrayList<JRadioButton> buttons;
     private ButtonGroup bg;
     private Font font;
+
+
+    private Font fontTitel = new Font("SanSerif",Font.BOLD,20);
+
     private String title;
     private String insert;
     private boolean go=false;
@@ -110,7 +114,7 @@ public class ListSelect extends JPanel {
 
         JLabel Title = new JLabel("Select "+Map[in] +" for "+title);
         Title.setBounds(50, 10, 500, 40);
-        Title.setFont(font);
+        Title.setFont(fontTitel);
         add(Title);
         panel.setLayout(null);
 
@@ -185,7 +189,7 @@ public class ListSelect extends JPanel {
                             int te=insert.split(",").length;
                             for(int i1=0; i1<te; i1++) {
                                 if (i1+1==te) {
-                                    add+=label.get(i).getText().split(Pattern.quote(" | "))[0]+",";
+                                    add+=label.get(i).getText().split(Pattern.quote(" | "))[0].replaceAll(" ","")+",";
                                 }else {
                                     if (in==2 &&i1==0&& insert.split(",", -1)[in-2].equals("2b"))
                                         add+="2a,";
@@ -209,9 +213,9 @@ public class ListSelect extends JPanel {
                                 }
                                 else add += insert.split(",")[i1];
                                 }
-                                insert=add+label.get(i).getText().split(Pattern.quote(" | "))[0]+",";
+                                insert=add+label.get(i).getText().split(Pattern.quote(" | "))[0].replaceAll(" ","")+",";
                             }else
-                            insert+=label.get(i).getText().split(Pattern.quote(" | "))[0]+",";
+                            insert+=label.get(i).getText().split(Pattern.quote(" | "))[0].replaceAll(" ","")+",";
                         }
                     }
                     System.out.println("OK1");
@@ -223,12 +227,12 @@ public class ListSelect extends JPanel {
                         ListSelect p=new ListSelect(title,insert);
 
 
-                        if (p.done) new Window(800, 700, p, "New");
+                        if (p.done) new Window(600, 720, p, "New");
                     }
             };
             button.addActionListener(le);
             add(button);
-            panel.setPreferredSize(new Dimension(max*6+20,35*s.size()));
+            panel.setPreferredSize(new Dimension((int)(max*7),35*s.size()));
             JScrollPane scrollPane = new JScrollPane(panel);
             scrollPane.setBounds(50, 50, 500, 500);
             add(scrollPane);
