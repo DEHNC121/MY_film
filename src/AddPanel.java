@@ -172,6 +172,9 @@ public class AddPanel extends JPanel {
                         if (input.get(i).getText().equals("")) {
                             error="you have to fill all of the fields";
                         }
+                        if (input.get(i).getText().length()>100) {
+                            error="input in field "+ n[i]+" is too long";
+                        }
                     }
                     catch (Exception ex) {
                             error="input in field "+ n[i]+" is incorrect";
